@@ -122,4 +122,25 @@ A projekt célja tehát egy **megbízható, skálázható és felhasználóbará
 
 
 
+# feat: Követelmények
+
+## Funkcionális követelmények
+
+- **Bejegyzések tárolása:** Képes képeket és más formátumokat (pl. GIF) kezelni az álláshirdetések részeként.  
+- **Felhasználói adatok kezelése:** Tárolja a felhasználónév, jelszó és email adatokat.  
+- **Webes működés:** Reszponzív felület, számítógépen és mobil eszközön egyaránt használható. 
+- **Adatbázissal való gördülékeny kommunikáció:** A webes felület folyamatosan szinkronizál a MySQL adatbázissal.  
+
+
+## Nemfunkcionális követelmények
+
+- **Adatbiztonság:** Felhasználók nem módosíthatják mások bejegyzéseit.    
+- **Felhasználóbarát kezelés:** Az oldal könnyen kezelhető, minimális informatikai tudással is használható.  
+- **Webes adatkezelés:** Az oldal képes az adatbázist webes felületen kezelni.  
+- **Hardverigény:** Csak okoseszközre és internetkapcsolatra van szükség, különleges hardver nem szükséges.  
+- **Telepítésmentes használat:** Az oldal telepítés nélkül, bármilyen böngészőn elérhető, külön kiegészítők nélkül.  
+
+
+
+
 
