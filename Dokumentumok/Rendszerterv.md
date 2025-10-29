@@ -122,7 +122,7 @@ A projekt célja tehát egy **megbízható, skálázható és felhasználóbará
 
 
 
-# feat: Követelmények
+# Követelmények
 
 ## Funkcionális követelmények
 
@@ -141,6 +141,24 @@ A projekt célja tehát egy **megbízható, skálázható és felhasználóbará
 - **Telepítésmentes használat:** Az oldal telepítés nélkül, bármilyen böngészőn elérhető, külön kiegészítők nélkül.  
 
 
+
+# Funkcionális terv
+
+## 5.1 Rendszerszereplők
+
+A rendszer működése két fő felhasználói szerepkörre épül:
+
+
+### Cég (Company)
+- A cég felhasználók jogosultak az álláshirdetések létrehozására, módosítására és törlésére.  
+- Megtekinthetik a beérkezett jelentkezéseket az álláshirdetésekhez.  
+- Kizárólag a saját hirdetéseikhez kapcsolódó adatokhoz férhetnek hozzá, más cégek hirdetéseihez nem.  
+
+
+### Álláskereső (Seeker)
+- Az álláskeresők böngészhetik az összes elérhető állást, jelentkezhetnek rájuk és visszavonhatják a jelentkezéseiket.  
+- Megtekinthetik, mely pozíciókra adtak be pályázatot.  
+- A rendszer biztosítja, hogy az álláskeresők csak a saját profiljuk adataihoz férjenek hozzá.  
 
 
 
