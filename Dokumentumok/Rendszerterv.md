@@ -162,3 +162,24 @@ A rendszer működése két fő felhasználói szerepkörre épül:
 
 
 
+# Fizikai környezet és Architekturális terv
+
+## Fizikai környezet
+- Az alkalmazás asztali platformra készült, és **bármilyen PC-ről elérhető** internetkapcsolat mellett.  
+- **Nincs szükség további alkalmazások telepítésére** a futtatáshoz.  
+
+## Architekturális terv
+
+### Backend szerver
+- Az alkalmazás backendje **MySQL adatbázisra** épül, amelyet a **XAMPP szerver** futtat.  
+- A backend biztosítja az adatok kezelését, tárolását és lekérdezését az álláshirdetések és felhasználói adatok számára.  
+- A frontend HTTP kéréseken keresztül kommunikál a backenddel, a válaszok **JSON formátumban** érkeznek.  
+- A backend feladata a **biztonságos adatkezelés**, a felhasználói jogosultságok ellenőrzése és a rendszer logikájának kiszolgálása.  
+
+### Frontend kliens
+- A frontend **Angular keretrendszerrel** készült, amely lehetővé teszi a **modern, reszponzív webes alkalmazások** létrehozását.  
+- Az alkalmazás a **HTML, CSS és JavaScript/TypeScript** kombinációját használja a felhasználói felület megjelenítésére és interaktív funkciók biztosítására.  
+- A frontend és a backend közötti kommunikáció **REST API-n és JSON formátumon** keresztül történik.  
+- A frontend feladata a **felhasználói élmény biztosítása**, a tartalmak dinamikus megjelenítése és az állások böngészésének, jelentkezésének kezelése.    
+
+
