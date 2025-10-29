@@ -97,3 +97,29 @@ A projekt célja tehát egy **megbízható, skálázható és felhasználóbará
 - Hibák feltárása és dokumentálása.  
 - A felhasználói élmény, funkcionalitás és teljesítmény ellenőrzése különböző eszközökön és böngészőkben.  
 
+
+# Üzleti folyamatok modellje 
+
+## Szerepkörök és fő funkciók
+
+### Cég (Company)
+
+**Feladatai és jogosultságai:**
+- Bejelentkezés és kijelentkezés.  
+- Saját álláshirdetések létrehozása, módosítása és törlése.  
+- Beérkezett jelentkezések megtekintése.  
+- Saját profiladatok kezelése.
+
+
+### Álláskereső (Seeker)
+
+**Feladatai és jogosultságai:**
+- Regisztráció és bejelentkezés.  
+- Álláshirdetések böngészése.  
+- Jelentkezés kiválasztott állásokra.  
+- Jelentkezések visszavonása.  
+- Saját profiladatok kezelése és frissítése.
+
+
+
+
