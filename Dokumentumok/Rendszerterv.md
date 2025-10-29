@@ -57,3 +57,43 @@ Ez a rendszer egy **modern, Angular + MySQL alapú webalkalmazás**, amely lehet
 - az álláskeresők számára pedig az állások közötti gyors és hatékony böngészésre, valamint jelentkezésre.
 
 A projekt célja tehát egy **megbízható, skálázható és felhasználóbarát** rendszer kialakítása, amely megkönnyíti a munkaerőpiaci kapcsolatok létrejöttét.
+
+
+# Projektterv
+
+## Projektmunkások és felelősségek
+
+### Frontend
+**Csapattagok:**
+- Kerekes Benedek  
+- Krizsó Csaba  
+
+**Feladataik:**
+- A felhasználók által elérhető felületek megtervezése és létrehozása.  
+- A backend által biztosított funkciók integrálása és megjelenítése a felhasználói felületen.  
+- Egységes, reszponzív és felhasználóbarát design kialakítása.  
+
+
+### Backend
+**Csapattagok:**
+- Hegedűs Gergő  
+- Fábián Szilárd  
+
+**Feladataik:**
+- A frontend kiszolgálása adatokkal, API-k és végpontok megvalósítása.  
+- Az adatbázis-struktúra tervezése és a MySQL-alapú adatbázis létrehozása.  
+- Az adatkezelés biztonságos és hatékony működésének biztosítása.  
+
+
+### Tesztelés
+**Csapattagok:**
+- Hegedűs Gergő  
+- Fábián Szilárd  
+- Kerekes Benedek  
+- Krizsó Csaba  
+
+**Feladataik:**
+- A rendszer átfogó tesztelése az üzembe helyezés előtt.  
+- Hibák feltárása és dokumentálása.  
+- A felhasználói élmény, funkcionalitás és teljesítmény ellenőrzése különböző eszközökön és böngészőkben.  
+
