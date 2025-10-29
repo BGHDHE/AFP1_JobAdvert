@@ -183,3 +183,39 @@ A rendszer működése két fő felhasználói szerepkörre épül:
 - A frontend feladata a **felhasználói élmény biztosítása**, a tartalmak dinamikus megjelenítése és az állások böngészésének, jelentkezésének kezelése.    
 
 
+
+# Adatbázis terv
+
+## USER (Felhasználók)
+- **username** (VARCHAR, PRIMARY KEY) – egyedi felhasználónév  
+- **password** (VARCHAR) – jelszó, titkosítva tárolva  
+- **email** (VARCHAR) – felhasználó email címe  
+- **role** (ENUM: 'company', 'seeker') – felhasználói szerepkör  
+
+## COMPANY (Cégek)
+- **id** (INT, PRIMARY KEY, AUTO_INCREMENT) – egyedi azonosító  
+- **user_username** (VARCHAR, FOREIGN KEY → USER.username) – a cég felhasználói profilja  
+- **company_name** (VARCHAR) – cég neve  
+- **description** (TEXT) – rövid leírás a cégről  
+
+## JOBS (Álláshirdetések)
+- **id** (INT, PRIMARY KEY, AUTO_INCREMENT) – egyedi álláshirdetés azonosító  
+- **company_id** (INT, FOREIGN KEY → COMPANY.id) – a hirdetést létrehozó cég  
+- **title** (VARCHAR) – az állás pozíciója  
+- **description** (TEXT) – részletes állásleírás  
+- **location** (VARCHAR) – munkavégzés helye  
+- **date_posted** (DATETIME) – hirdetés létrehozásának időpontja  
+
+## APPLICATIONS (Jelentkezések)
+- **id** (INT, PRIMARY KEY, AUTO_INCREMENT) – egyedi azonosító  
+- **job_id** (INT, FOREIGN KEY → JOBS.id) – mely állásra jelentkezett a felhasználó  
+- **seeker_username** (VARCHAR, FOREIGN KEY → USER.username) – jelentkező felhasználó  
+- **date_applied** (DATETIME) – jelentkezés időpontja  
+- **status** (ENUM: 'pending', 'accepted', 'rejected') – jelentkezés státusza  
+ 
+## SAVED_JOBS (Elmentett állások)
+- **seeker_username** (VARCHAR, FOREIGN KEY → USER.username) – az álláskereső  
+- **job_id** (INT, FOREIGN KEY → JOBS.id) – elmentett állás azonosító  
+- **date_saved** (DATETIME) – mentés időpontja
+
+
