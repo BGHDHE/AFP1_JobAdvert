@@ -219,3 +219,43 @@ A rendszer működése két fő felhasználói szerepkörre épül:
 - **date_saved** (DATETIME) – mentés időpontja
 
 
+# Tesztterv, Telepítési és Karbantartási terv
+
+## Tesztterv
+*A tesztelési rész részletesen a rendszer működését, hibamentességét és felhasználói élményét ellenőrzi. A tesztelés magában foglalja a frontend és backend funkciók, az adatbázis műveletek és a felhasználói interakciók vizsgálatát.*
+
+- **Frontend tesztelés:** Ellenőrizni kell a reszponzív megjelenést, a formok működését, a jelentkezés és álláshirdetés létrehozás folyamatát.  
+- **Backend tesztelés:** Ellenőrizni kell a REST API végpontokat, az adatbázis műveletek helyességét és a felhasználói jogosultságokat.  
+- **Integrációs teszt:** A frontend és backend közötti kommunikáció tesztelése JSON adatokon keresztül.  
+- **Felhasználói teszt:** Valódi felhasználók bevonásával ellenőrizni a funkcionalitást és a felhasználói élményt.  
+
+## Telepítési terv
+
+### Fizikai telepítési terv
+- Egy szervergépre szükséges **XAMPP telepítése**, amely tartalmazza a MySQL (MariaDB) adatbázist.  
+- Feltölteni az adatbázis sémát a megfelelő fájlokkal.  
+- Az Angular frontend és a hozzá tartozó Node.js/JavaScript környezet futtatása az adott szerveren.  
+
+### Szoftver telepítési terv
+- A portál eléréséhez elegendő az alkalmazás letöltése, telepítése és futtatása bármely PC-n, amely **internetkapcsolattal** rendelkezik.  
+- Telepítéshez nincs szükség további szoftverekre vagy kiegészítőkre a felhasználó gépén.  
+
+## Karbantartási terv
+
+### Tartalmi karbantartás
+- A portálon megjelenő tartalmak folyamatos ellenőrzés alatt állnak; a **nem kívánt vagy káros tartalmak törlésre kerülnek**.  
+- Időszakosan ellenőrizhető a felhasználói profilok és bejegyzések tartalma, a sértő vagy káros szavak kiszűrésére.  
+- A troll felhasználók elleni védelem és moderáció folyamatosan történik.  
+
+### Rendszeres karbantartás
+- **Adatbázis karbantartása:**  
+  - Az adatbázis séma biztosítja a törölt felhasználók posztjainak automatikus eltávolítását.  
+  - Időszakos karbantartás keretében törlésre kerülnek a felesleges adatok, például spam kommentek vagy inaktív felhasználók.  
+  - Rendszeres biztonsági mentés készül a szerverről.  
+
+- **Szerver karbantartása:**  
+  - A forráskód karbantartása során törekedünk arra, hogy a jövőbeni frissítésekhez **minimális módosításra** legyen szükség.  
+  - A függőségek verziószámai rögzítve vannak, hogy a rendszer stabilan és megbízhatóan működjön.  
+
+
+
