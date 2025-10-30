@@ -118,8 +118,9 @@ Elmentett állások kezelése: Álláskeresőknek itt elérhető a már jelentke
 Bejelentkezés/Regisztráció <img width="1176" height="604" alt="Image" src="https://github.com/user-attachments/assets/cc02cd09-954c-4577-a3b2-944272f88495" /> 
 Regisztráció panel <img width="1176" height="604" alt="Image" src="https://github.com/user-attachments/assets/029dc843-3e37-4133-8db9-11a65e63acbd" /> 
 Bejelentkezés panel <img width="1176" height="604" alt="Image" src="https://github.com/user-attachments/assets/4e6dff25-e8ba-4219-abb9-0196c9d60d44" /> 
-Álláskereső munka böngészés <img width="1176" height="604" alt="Image" src="https://github.com/user-attachments/assets/fe58c031-497c-4d19-8eb0-15664cf6c1d9" />
+Álláskereső munka böngészés <img width="1176" height="604" alt="Image" src="https://github.com/user-attachments/assets/ddc01bda-9d10-4043-a50e-71f93abe313b" />
 Cég felhasználó álláshirdetései <img width="1176" height="604" alt="Image" src="https://github.com/user-attachments/assets/71d7ee39-3fae-405d-a3d8-c3b7eae78478" />
+Új álláshirdetés létrehozása <img width="1176" height="604" alt="Image" src="https://github.com/user-attachments/assets/e5a9685e-5110-4949-aa17-84eb8bd2841e" />
 Álláshirdetésre jelentkezők kezelése <img width="1176" height="604" alt="Image" src="https://github.com/user-attachments/assets/a29a94c0-617e-483e-93b8-affa84d71502" />
 Cég profil módosítása <img width="1176" height="604" alt="Image" src="https://github.com/user-attachments/assets/9f967cbc-4d9f-413b-b700-7b735a7b5d4f" />
 Felhasználó profil módosítása <img width="1176" height="604" alt="Image" src="https://github.com/user-attachments/assets/ed58f901-07f5-422b-9ec6-00412a34db06" />
@@ -131,7 +132,7 @@ Elmentett állások böngészése <img width="1176" height="604" alt="Image" src
 Amikor megnyitódik a weboldal akkor a látogatónak lehetősége van regisztrálni vagy bejelentkezni már meglévő fiókjába. Bejelentkezés esetén megadja a felhasználónevét és jelszavát, ezek után pedig beléphetnek az oldalra. Regisztráció opció választásakor viszont meg kell adnia a felhasználónevét, jelszavát majd meg kell ismételnie a jelszavát ismét.
 
 ## Céges felhasználó
-Céges felhasználó belépés után navigálódik az oldalra ahol létrehozhat/nézheti az általuk létrehozott álláshirdetéseket. Ezután az új gombra kattintva létrehozhat újj álláshirdetést ahol meg kell annak nevét illetve adatait adnia. Ezután később módosíthatja vagy törölheti a hirdetést kedve szerint a megfelelő gombokra kattintva.
+Céges felhasználó belépés után navigálódik az oldalra ahol létrehozhat/nézheti az általuk létrehozott álláshirdetéseket. Ezután az új gombra kattintva létrehozhat újj álláshirdetést ahol meg kell annak nevét illetve adatait adnia. Ezt követően pedig a létrehozás gombra kattintva befejezheti az álláshirdetés készítését a mégse gombra kattintva pedig elvetheti azt.  Ezután később módosíthatja vagy törölheti a hirdetést kedve szerint a megfelelő gombokra kattintva.
 
 ## Álláskereső felhasználó
 Álláskereső felhasználó belépés után egy oldalra kerül ahol állások vannak listázva előtte. Itt böngészhet állások között ami érdekli és jelentkezhet rájuk. Jelentkezést követően az adott hirdetés elmentődik. És lehetősége lesz a felhasználónak lejelentkeznie róla az elmentett állásai oldalról vagy ott helyben. A profil gombra kattintás után lehetősége lesz Módosítania a felhasználónevén, jelszaván, illetve egyéb adatokat képes megadni magáról.
