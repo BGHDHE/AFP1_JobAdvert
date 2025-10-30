@@ -82,3 +82,35 @@ Profiladatok megtekintése és szerkesztése.
 Elmentett állások kezelése.
 
 Adatok biztonságos tárolása (titkosított jelszavak).
+
+# Használati esetek
+
+Cég Lehetőségük van álláshirdetések létrehozásához, saját álláshirdetések módosításához és törléséhez, valamint álláskeresők jelentkezésének elfogadására vagy elutasítására.
+
+Álláskeresők Képesek megtekinteni minden álláshírdetést, azokra jelentkezni illetve lejelentkezni. Viszont nincs lehetőségük álláshirdetéseket módosítani, létrehozni vagy törölni.
+
+# Megfeleltetés, hogyan fedik le a használati eseteket a követelmények
+
+Regisztáció: Itt képesek a felhasználók Céges, vagy álláskereső profilt létrehozni, hogy később az oldal további funkcióit elérhessék.
+
+Bejelentkezés: Itt van lehetősége a már fiókkal rendelkező felhasználóknak belépni és használni az oldal adta opciókat.
+
+Álláshirdetés létrehozása: A céges felhasználók itt képesek létrehozni új álláshirdetést amire később jelentkezéseket adhatnak le az álláskeresők.
+
+Álláshirdetés módosítása: Már létező álláshirdetést itt képes a Cég felhasználó módosítani.
+
+Álláshirdetés törlése: Amennyiben az állás már nem aktuális abban az esetben itt van Cég felhasználóknak lehetősége törölni a releváns hirdetést.
+
+Álláshirdetések böngészése: Álláskeresőknek itt van lehetősége böngészni az összes meghirdetett állást.
+
+Álláshirdetések jentkezés: Itt van álláskeresőknek alkalma jelentkezni állásokra amik felkeltették érdeklődésüket.
+
+Álláshirdetések visszavonás: Itt tudnak az álláskeresők lejelentkezni olyan álláshirdetésekről amikre már korábban jelentkeztek.
+
+Jelentkezések státuszának kezelése: Céges felhasználóknak ezen a helyen van lehetőségük elutasítani vagy elfogadni jelentkezéseket az általuk meghirdetett állásokra.
+
+Profiladatok felhasználóknak itt van lehetősége saját adataiknak a módosítására/megtekintésére.
+
+Elmentett állások kezelése: Álláskeresőknek itt elérhető a már jelentkezett álláshirdetések kezelésére.
+
+# Képernyő tervek
