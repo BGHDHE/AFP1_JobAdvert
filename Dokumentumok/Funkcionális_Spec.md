@@ -125,7 +125,13 @@ Cég profil módosítása <img width="1176" height="604" alt="Image" src="https:
 Felhasználó profil módosítása <img width="1176" height="604" alt="Image" src="https://github.com/user-attachments/assets/ed58f901-07f5-422b-9ec6-00412a34db06" />
 Elmentett állások böngészése <img width="1176" height="604" alt="Image" src="https://github.com/user-attachments/assets/e95a9db3-b797-4673-b7bf-0dcf79748ac8" />
 
-
 # Forgatókönyvek
 
+## Alap forgatókönyv:
+Amikor megnyitódik a weboldal akkor a látogatónak lehetősége van regisztrálni vagy bejelentkezni már meglévő fiókjába. Bejelentkezés esetén megadja a felhasználónevét és jelszavát, ezek után pedig beléphetnek az oldalra. Regisztráció opció választásakor viszont meg kell adnia a felhasználónevét, jelszavát majd meg kell ismételnie a jelszavát ismét.
 
+## Céges felhasználó
+Céges felhasználó belépés után navigálódik az oldalra ahol létrehozhat/nézheti az általuk létrehozott álláshirdetéseket. Ezután az új gombra kattintva létrehozhat újj álláshirdetést ahol meg kell annak nevét illetve adatait adnia. Ezután később módosíthatja vagy törölheti a hirdetést kedve szerint a megfelelő gombokra kattintva.
+
+## Álláskereső felhasználó
+Álláskereső felhasználó belépés után egy oldalra kerül ahol állások vannak listázva előtte. Itt böngészhet állások között ami érdekli és jelentkezhet rájuk. Jelentkezést követően az adott hirdetés elmentődik. És lehetősége lesz a felhasználónak lejelentkeznie róla az elmentett állásai oldalról vagy ott helyben. A profil gombra kattintás után lehetősége lesz Módosítania a felhasználónevén, jelszaván, illetve egyéb adatokat képes megadni magáról.
