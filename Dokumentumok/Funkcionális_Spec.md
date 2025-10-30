@@ -42,5 +42,28 @@ A felület reszponzív, tehát bármilyen eszközön kényelmesen használható.
 
 A felhasználói adatok biztonságosan, jelszóvédetten kerülnek tárolásra.
 
+## A rendszerre vonatkozó külső megszorítások
 
+A rendszernek meg kell felelnie az alapvető adatvédelmi (GDPR) elvárásoknak.
+
+Csak böngésző alapú működés megengedett (telepítés nélkül).
+
+Az adatkezelés MySQL alapú, XAMPP környezetben.
+
+A fejlesztés Angular keretrendszerben történik.
+
+Az üzemeltetéshez szükséges minimális hardverigény: internetkapcsolattal rendelkező számítógép.
+
+## Jelenlegi üzleti folyamatok modellje
+
+A jelenlegi (nem informatikai) folyamat során a cégek manuálisan, e-mailben vagy telefonon hirdetnek állásokat, míg az álláskeresők önéletrajzot küldenek vagy személyesen érdeklődnek.
+Ez időigényes, nehezen átlátható és sokszor adatvesztéssel jár.
+
+## Igényelt üzleti folyamatok modellje
+
+A cég online hoz létre hirdetést → a hirdetés megjelenik az adatbázisban → az álláskeresők böngészhetnek és jelentkezhetnek rá.
+
+Az álláskereső regisztrál, bejelentkezik, böngészi a hirdetéseket, jelentkezik, majd visszavonhatja a pályázatát.
+
+A rendszer automatikusan naplózza az eseményeket és biztosítja a megfelelő hozzáféréseket (csak saját adatok módosíthatók).
 
