@@ -117,7 +117,7 @@ Elmentett állások kezelése: Álláskeresőknek itt elérhető a már jelentke
 
 Bejelentkezés/Regisztráció <img width="1176" height="604" alt="Image" src="https://github.com/user-attachments/assets/cc02cd09-954c-4577-a3b2-944272f88495" /> 
 Regisztráció panel <img width="1176" height="604" alt="Image" src="https://github.com/user-attachments/assets/029dc843-3e37-4133-8db9-11a65e63acbd" /> 
-Bejelentkezés panel <img width="1176" height="604" alt="Image" src="https://github.com/user-attachments/assets/4e6dff25-e8ba-4219-abb9-0196c9d60d44" /> 
+Bejelentkezés panel <img width="1176" height="604" alt="Image" src="https://github.com/user-attachments/assets/0e82025b-aa7a-4b9a-91cc-6a1d8274c0bc" /> 
 Álláskereső munka böngészés <img width="1176" height="604" alt="Image" src="https://github.com/user-attachments/assets/ddc01bda-9d10-4043-a50e-71f93abe313b" />
 Cég felhasználó álláshirdetései <img width="1176" height="604" alt="Image" src="https://github.com/user-attachments/assets/71d7ee39-3fae-405d-a3d8-c3b7eae78478" />
 Új álláshirdetés létrehozása <img width="1176" height="604" alt="Image" src="https://github.com/user-attachments/assets/e5a9685e-5110-4949-aa17-84eb8bd2841e" />
