@@ -158,4 +158,18 @@ Profiladatok: Céges és Álláskereső felhasználók egyaránt képesek a saj�
 
 Elmentett állások: Itt van lehetősége az álláskeresőknek böngészni az álláshirdetéseket amikre már jelentkeztek. Itt feltntetve van a hirdetéssel kapcsolatos aktuális státuszuk is. Valamint amennyiben még nem lett eldöntve, hogy megfelelnek-e a hirdetésnek, lehetőségük van lejelentkezni azokról a lejelentkezés gombra kattintással.
 
+# Fogalomszótár
+
+Céges (Company) felhasználó - Olyan user amelyek képsesek álláshirdetéseket meghirtedni illetve a sajátjaikat módosítani vagy törölni. Valamint lehetőségük van saját hirdetéseikre jelentkező álláskeresőket elfogadni vagy elutasítani.
+
+Álláskereső (Seeker) felhasználó  - Olyan user akik állásokat keresnek illetve hirdetésekre jelentkeznek. Megtekinthetik az összes Cég felhasználótól elkészített álláshirdetést.
+
+Álláshirdetés - Egy cégen belüli munkakör reklámja amire képesek álláskeresők jelentkezni.
+
+Frontend: A felhasználói felület, amely HTML, CSS és JavaScript/TypeScript használatával vaéósul meg Angular keretrenszerben.
+
+Backend: A szerveroldali logika, amely feldolgozza a kifejezéseket és visszaadja az eredményt.
+
+Tesztelés: A fejlesztés során egység- és integrációs tesztek biztosítják a rendszer megbízhatóságát és hibamentes működését.
+
 
