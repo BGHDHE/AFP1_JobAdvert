@@ -135,3 +135,27 @@ Céges felhasználó belépés után navigálódik az oldalra ahol létrehozhat/
 
 ## Álláskereső felhasználó
 Álláskereső felhasználó belépés után egy oldalra kerül ahol állások vannak listázva előtte. Itt böngészhet állások között ami érdekli és jelentkezhet rájuk. Jelentkezést követően az adott hirdetés elmentődik. És lehetősége lesz a felhasználónak lejelentkeznie róla az elmentett állásai oldalról vagy ott helyben. A profil gombra kattintás után lehetősége lesz Módosítania a felhasználónevén, jelszaván, illetve egyéb adatokat képes megadni magáról.
+
+# Funkció- követelmény megfeleltetése
+
+Bejelentkezés vagy regisztráció nélküli interkaciók elkerülése: Az oldal funkcióit nem lesz lehetséges elérni bejelentkezés illetve regisztráció nélkül.
+
+Álláshirdetés létrehozása: Céges felhasználók a főoldalon lévő "Új" gomb lenyomása után képesek egy Álláshirdetés elkészítésére ahol megadják annak nevét, illetve adatait.
+
+Álláshirdetés módosítása: A Céges felhasználóknak a főoldalon van opciójuk az adott álláshirdetés módosítás gombjára kattinvta változtatni az adott álláshirdetés adatain.
+
+Álláshirdetés törlése: Amennyiben törölni szeretnének úgy a Céges felhasználók képesek a saját álláshirdetéseiknél láthatő törlés gombbal eltávolítani hirdetéseket amik már nem szükségesek számukra. Ilyenkor az arra jelentkezett álláskeresők az elutasított státuszba kerülnek.
+
+Álláshirdetés böngészése: Álláskereső felhasználóknak a főoldalra kerülve lehetőségük van böngészni az elérhető álláshirdetések közül, valamint egy keresővel leszűrni azokat.
+
+Álláshirdetések jentkezés: Álláskeresők képesek az általuk érdekelt álláshirdetésekre jelentkezni úgy, hogy rákattintanak a jelentkezés gombra az adott álláshirdetésnél.
+
+Álláshirdetések visszavonás: Már jelentkezett álláshirdetésekről lehetséges lejelentkezni álláskereső felhasználóként a visszavonás/lejelentkezés gombra kattintva a releváns állásnál. Ezt megtehetik a böngészés közben vagy pedig az elmentett állásaik közül.
+
+Jelentkezési státuszok kezelése: Céges felhasználók az álláshirdetéseiken lévő jelentkezők gombra kattintva láthatják azokat akik jelentkeztek az adott álláshirdetésre, ezek után pedig kiválaszthatják azokat az embereket, akiket alkalmasnak tekintenek illetve azokat akik nem felelnek meg a feltüntetett munkakörnek.
+
+Profiladatok: Céges és Álláskereső felhasználók egyaránt képesek a saját profiljukat módosítani azután, hogy rákattintanak a profil gombra a főoldalon, utána pedig a módosítás gombra a releváns szekciónál.
+
+Elmentett állások: Itt van lehetősége az álláskeresőknek böngészni az álláshirdetéseket amikre már jelentkeztek. Itt feltntetve van a hirdetéssel kapcsolatos aktuális státuszuk is. Valamint amennyiben még nem lett eldöntve, hogy megfelelnek-e a hirdetésnek, lehetőségük van lejelentkezni azokról a lejelentkezés gombra kattintással.
+
+
