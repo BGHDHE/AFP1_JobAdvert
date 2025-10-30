@@ -114,3 +114,18 @@ Profiladatok felhasználóknak itt van lehetősége saját adataiknak a módosí
 Elmentett állások kezelése: Álláskeresőknek itt elérhető a már jelentkezett álláshirdetések kezelésére.
 
 # Képernyő tervek
+
+<img width="1176" height="604" alt="Image" src="https://github.com/user-attachments/assets/cc02cd09-954c-4577-a3b2-944272f88495" /> Bejelentkezés/Regisztráció
+<img width="1176" height="604" alt="Image" src="https://github.com/user-attachments/assets/029dc843-3e37-4133-8db9-11a65e63acbd" /> Regisztráció panel
+<img width="1176" height="604" alt="Image" src="https://github.com/user-attachments/assets/4e6dff25-e8ba-4219-abb9-0196c9d60d44" /> Bejelentkezés panel
+<img width="1176" height="604" alt="Image" src="https://github.com/user-attachments/assets/fe58c031-497c-4d19-8eb0-15664cf6c1d9" /> Álláskereső munka böngészés
+<img width="1176" height="604" alt="Image" src="https://github.com/user-attachments/assets/71d7ee39-3fae-405d-a3d8-c3b7eae78478" /> Cég felhasználó álláshirdetései
+<img width="1176" height="604" alt="Image" src="https://github.com/user-attachments/assets/a29a94c0-617e-483e-93b8-affa84d71502" /> Álláshirdetésre jelentkezők kezelése
+<img width="1176" height="604" alt="Image" src="https://github.com/user-attachments/assets/9f967cbc-4d9f-413b-b700-7b735a7b5d4f" /> Cég profil módosítása
+<img width="1176" height="604" alt="Image" src="https://github.com/user-attachments/assets/ed58f901-07f5-422b-9ec6-00412a34db06" /> Felhasználó profil módosításaű
+<img width="1176" height="604" alt="Image" src="https://github.com/user-attachments/assets/e95a9db3-b797-4673-b7bf-0dcf79748ac8" /> Elmentett állások böngészése
+
+
+# Forgatókönyvek
+
+
