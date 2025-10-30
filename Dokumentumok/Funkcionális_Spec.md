@@ -67,3 +67,18 @@ Az álláskereső regisztrál, bejelentkezik, böngészi a hirdetéseket, jelent
 
 A rendszer automatikusan naplózza az eseményeket és biztosítja a megfelelő hozzáféréseket (csak saját adatok módosíthatók).
 
+# Követelménylista
+
+Felhasználói regisztráció és bejelentkezés.
+
+Cég típusú felhasználók számára hirdetések létrehozása, módosítása, törlése.
+
+Álláskeresők számára álláshirdetések böngészése, jelentkezés, visszavonás.
+
+Jelentkezések státuszának kezelése.
+
+Profiladatok megtekintése és szerkesztése.
+
+Elmentett állások kezelése.
+
+Adatok biztonságos tárolása (titkosított jelszavak).
