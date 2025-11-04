@@ -9,41 +9,45 @@ body {
   padding-top: 30px;
 }
 
-h2
-{
-  color: black;
-  font-size: 1.2rem;
+h2 {
+  align-items: center;
   text-align: center;
-
+  font-size: 1.5rem;
+  margin-bottom: 20px;
 }
 
-.username, .password
-{
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin: 10px;
-  padding: 8px;
-  width: 250px;
+login.wrapper {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
 }
 
 .logincontainer {
-  background-color: yellow;
-  border: 2px solid black;
-  margin: 0 auto;
-  padding: 10px;
-  width: fit-content;
+  background-color: #fff476;
+  border: 2px solid #000;
+  border-radius: 10px;
+  padding: 20px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
 }
 
-
-.h2 
-{
-  text-align: center;
-  font-size: 2rem;
+.inputrow {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
 }
-.h3
-{
-  text-align: center;
-  font-size: 1.5rem;
+
+label {
+  font-weight: bold;
+  width: 130px;
+  text-align: right;
 }
 
 .loginbutton, .registerbutton
@@ -59,15 +63,17 @@ h2
 
 .loginbutton{
   position: relative;
+  top: 350px;
   left: 0%;
 }
 
 .registerbutton{
   position: relative;
+  top: 350px;
   left: 0%;
 }
 
-.loginbutton:hover, .registerbutton:hover {
+.loginbutton:hover, .registerbutton:hover .loginButton:hover {
   background: #e2dcdc;
   cursor: pointer;
 }
@@ -76,7 +82,11 @@ h2
   background-color: rgb(209, 188, 188);
   position: relative;
   border : black 2px solid;
-  top: 350px;
   
+}
+.loginButton
+{
+  background-color: rgb(209, 188, 188);
+  border : black 2px solid;
 }
 
