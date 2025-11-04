@@ -31,7 +31,7 @@ body {
 }
 
 .loginbutton:hover, .registerbutton:hover {
-  background: #1b8bbf;
+  background: #e2dcdc;
   cursor: pointer;
 }
 
@@ -42,3 +42,4 @@ body {
   top: 350px;
   
 }
+
