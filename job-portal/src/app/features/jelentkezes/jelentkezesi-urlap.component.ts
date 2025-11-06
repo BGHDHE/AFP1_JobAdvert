@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { JelentkezesService } from './jelentkezes.service';
 
 @Component({
   selector: 'app-jelentkezesi-urlap',
   templateUrl: './jelentkezesi-urlap.component.html',
-  styleUrls: ['./jelentkezesi-urlap.component.css']
+  styleUrls: ['./jelentkezesi-urlap.component.css'],
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule]
 })
 export class JelentkezesiUrlapComponent implements OnInit {
   jelentkezesiForm!: FormGroup;
