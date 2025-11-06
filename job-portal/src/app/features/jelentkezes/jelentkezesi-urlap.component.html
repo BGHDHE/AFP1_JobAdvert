@@ -1,0 +1,196 @@
+<div class="jelentkezesi-urlap-container">
+  <h2>Állás jelentkezési űrlap</h2>
+  <form [formGroup]="jelentkezesiForm" (ngSubmit)="onSubmit()">
+    
+    <!-- Személyes adatok szekció -->
+    <div class="form-section">
+      <h3>Személyes adatok</h3>
+      
+      <div class="form-group">
+        <label for="nev">Teljes név*</label>
+        <input 
+          type="text" 
+          id="nev" 
+          formControlName="nev" 
+          class="form-control"
+          [ngClass]="{ 'is-invalid': isSubmitted && formControls['nev'].errors }"
+        >
+        <div *ngIf="isSubmitted && formControls['nev'].errors" class="error-message">
+          <div *ngIf="formControls['nev'].errors['required']">A név megadása kötelező</div>
+          <div *ngIf="formControls['nev'].errors['minlength']">A névnek legalább 3 karakter hosszúnak kell lennie</div>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="email">E-mail cím*</label>
+        <input 
+          type="email" 
+          id="email" 
+          formControlName="email" 
+          class="form-control"
+          [ngClass]="{ 'is-invalid': isSubmitted && formControls['email'].errors }"
+        >
+        <div *ngIf="isSubmitted && formControls['email'].errors" class="error-message">
+          <div *ngIf="formControls['email'].errors['required']">Az e-mail cím megadása kötelező</div>
+          <div *ngIf="formControls['email'].errors['email']">Érvénytelen e-mail formátum</div>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="telefonszam">Telefonszám*</label>
+        <input 
+          type="tel" 
+          id="telefonszam" 
+          formControlName="telefonszam" 
+          class="form-control"
+          placeholder="+36701234567"
+          [ngClass]="{ 'is-invalid': isSubmitted && formControls['telefonszam'].errors }"
+        >
+        <div *ngIf="isSubmitted && formControls['telefonszam'].errors" class="error-message">
+          <div *ngIf="formControls['telefonszam'].errors['required']">A telefonszám megadása kötelező</div>
+          <div *ngIf="formControls['telefonszam'].errors['pattern']">Érvénytelen telefonszám formátum (pl.: +36701234567)</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Szakmai adatok szekció -->
+    <div class="form-section">
+      <h3>Szakmai adatok</h3>
+      
+      <div class="form-group">
+        <label for="kepzettseg">Képzettségi szint*</label>
+        <select 
+          id="kepzettseg" 
+          formControlName="kepzettseg" 
+          class="form-control"
+          [ngClass]="{ 'is-invalid': isSubmitted && formControls['kepzettseg'].errors }"
+        >
+          <option value="">Válassz...</option>
+          <option *ngFor="let kepzettseg of kepzettsegek" [value]="kepzettseg.id">
+            {{ kepzettseg.nev }}
+          </option>
+        </select>
+        <div *ngIf="isSubmitted && formControls['kepzettseg'].errors" class="error-message">
+          <div *ngIf="formControls['kepzettseg'].errors['required']">A képzettségi szint kiválasztása kötelező</div>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="vegzettseg">Végzettség / szakirány*</label>
+        <input 
+          type="text" 
+          id="vegzettseg" 
+          formControlName="vegzettseg" 
+          class="form-control"
+          placeholder="pl.: Informatikus, Mérnök, stb."
+          [ngClass]="{ 'is-invalid': isSubmitted && formControls['vegzettseg'].errors }"
+        >
+        <div *ngIf="isSubmitted && formControls['vegzettseg'].errors" class="error-message">
+          <div *ngIf="formControls['vegzettseg'].errors['required']">A végzettség megadása kötelező</div>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="tapasztalatEv">Szakmai tapasztalat*</label>
+        <select 
+          id="tapasztalatEv" 
+          formControlName="tapasztalatEv" 
+          class="form-control"
+          [ngClass]="{ 'is-invalid': isSubmitted && formControls['tapasztalatEv'].errors }"
+        >
+          <option value="">Válassz...</option>
+          <option *ngFor="let tapasztalat of tapasztalatEvek" [value]="tapasztalat.id">
+            {{ tapasztalat.nev }}
+          </option>
+        </select>
+        <div *ngIf="isSubmitted && formControls['tapasztalatEv'].errors" class="error-message">
+          <div *ngIf="formControls['tapasztalatEv'].errors['required']">A szakmai tapasztalat kiválasztása kötelező</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Állás adatok szekció -->
+    <div class="form-section">
+      <h3>Állás adatai</h3>
+      
+      <div class="form-group">
+        <label for="allasId">Állás azonosító*</label>
+        <input 
+          type="text" 
+          id="allasId" 
+          formControlName="allasId" 
+          class="form-control"
+          [ngClass]="{ 'is-invalid': isSubmitted && formControls['allasId'].errors }"
+        >
+        <div *ngIf="isSubmitted && formControls['allasId'].errors" class="error-message">
+          <div *ngIf="formControls['allasId'].errors['required']">Az állás azonosító megadása kötelező</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- További információk szekció -->
+    <div class="form-section">
+      <h3>További információk</h3>
+      
+      <div class="form-group">
+        <label for="fizetesiIgeny">Fizetési igény (Ft/hó)</label>
+        <input 
+          type="number" 
+          id="fizetesiIgeny" 
+          formControlName="fizetesiIgeny" 
+          class="form-control"
+          placeholder="pl.: 400000"
+          [ngClass]="{ 'is-invalid': isSubmitted && formControls['fizetesiIgeny'].errors }"
+        >
+        <div *ngIf="isSubmitted && formControls['fizetesiIgeny'].errors" class="error-message">
+          <div *ngIf="formControls['fizetesiIgeny'].errors['pattern']">Csak számokat adhat meg</div>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="oneletrajz">Önéletrajz feltöltése*</label>
+        <input 
+          type="file" 
+          id="oneletrajz" 
+          formControlName="oneletrajz" 
+          class="form-control"
+          accept=".pdf,.doc,.docx"
+          [ngClass]="{ 'is-invalid': isSubmitted && formControls['oneletrajz'].errors }"
+        >
+        <small class="form-text text-muted">Elfogadott formátumok: PDF, DOC, DOCX</small>
+        <div *ngIf="isSubmitted && formControls['oneletrajz'].errors" class="error-message">
+          <div *ngIf="formControls['oneletrajz'].errors['required']">Az önéletrajz feltöltése kötelező</div>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="motivaciosLevel">Motivációs levél</label>
+        <textarea 
+          id="motivaciosLevel" 
+          formControlName="motivaciosLevel" 
+          class="form-control" 
+          rows="4"
+          placeholder="Írja le röviden, miért szeretne nálunk dolgozni..."
+        ></textarea>
+      </div>
+      
+      <div class="form-group">
+        <label for="egyebMegjegyzes">Egyéb megjegyzés</label>
+        <textarea 
+          id="egyebMegjegyzes" 
+          formControlName="egyebMegjegyzes" 
+          class="form-control" 
+          rows="3"
+          placeholder="Egyéb fontos információk..."
+        ></textarea>
+      </div>
+    </div>
+    
+    <!-- Form actions -->
+    <div class="form-actions">
+      <button type="button" class="btn btn-secondary" (click)="jelentkezesiForm.reset()">Visszaállítás</button>
+      <button type="submit" class="btn btn-primary">Jelentkezés beküldése</button>
+    </div>
+    
+  </form>
+</div>
