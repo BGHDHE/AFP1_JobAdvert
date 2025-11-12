@@ -3,8 +3,8 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-login',
   imports: [],
-  templateUrl: './seeker_main.html',
-  styleUrl: './seeker_main.css',
+  templateUrl: './login.html',
+  styleUrls: ['./login.css'],
 })
 export class Login {
 
