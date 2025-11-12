@@ -1,0 +1,92 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #99acff;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100vh;
+  margin: 0;
+  padding-top: 30px;
+}
+
+h2 {
+  align-items: center;
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+login.wrapper {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.logincontainer {
+  background-color: #fff476;
+  border: 2px solid #000;
+  border-radius: 10px;
+  padding: 20px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.inputrow {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+label {
+  font-weight: bold;
+  width: 130px;
+  text-align: right;
+}
+
+.loginbutton, .registerbutton
+
+{
+  font-size: 1.1rem;
+  padding: 10px;
+  margin: 5px;
+  border: black 2px solid;
+  background: #ffffff;
+
+}
+
+.loginbutton{
+  position: relative;
+  top: 350px;
+  left: 0%;
+}
+
+.registerbutton{
+  position: relative;
+  top: 350px;
+  left: 0%;
+}
+
+.loginbutton:hover, .registerbutton:hover .loginButton:hover {
+  background: #e2dcdc;
+  cursor: pointer;
+}
+
+.buttons{
+  background-color: rgb(209, 188, 188);
+  position: relative;
+  border : black 2px solid;
+  
+}
+.loginButton
+{
+  background-color: rgb(209, 188, 188);
+  border : black 2px solid;
+}
+
