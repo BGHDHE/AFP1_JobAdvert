@@ -1,0 +1,123 @@
+.body
+{
+    background:#3f8ee4
+}
+.joblisttitle
+{
+    font-size: 1.7rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+
+}
+.example
+{
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+    background-color: #eeea0f;
+}
+.jobname
+{
+    border-radius: 2px;
+    font-size: 1.5rem;
+    font-weight: bold;
+
+}
+
+.details
+{
+    position: relative;
+    left: 40%;
+    size: 2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.search-input {
+  width: 40%;
+  padding:  10px;
+  border-radius: 4px;
+  font-size: 1.rem;
+  font-style: bold;
+}
+
+.jobs {
+width: 300px;
+  height: 500px;
+  background-color: #2abfec;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+}
+
+.h2 
+{
+ position: relative;
+ top: -50%;
+ font-size: 1.5rem;
+}
+
+.p
+{
+    font-size: 1.5rem;
+
+}
+
+.details
+{
+    position: relative;
+    right: 100px;
+    font-size: 1rem;
+
+
+}
+
+button {
+  position : relative;
+  left: 68%;
+  width: 10%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.applybtn
+{
+  display:flex;
+  flex-direction: row;
+  position: relative;
+    top: -5;
+    left: 89%;
+}
+
+.rejectbtn
+{
+  display:flex;
+  flex-direction: row;
+  position: relative;
+    top: 0;
+    left:0;
+}
+
+.applybtn:hover{
+  background-color: #043972;
+}
+
+.rejectbtn:hover{
+  background-color: #043972;
+}
+
+.jobsbtn:hover{
+  background-color: #043972;
+}
+
+.logoutbtn:hover{
+  background-color: #043972;
+}
+
+.profilebtn:hover{
+  background-color: #043972;
+}
