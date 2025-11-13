@@ -1,0 +1,17 @@
+
+<div class = "Jobs_List">
+    <h2 class ="joblisttitle">Elérhető Állások</h2>
+<div class ="example">
+    <h2 class ="jobname">Állás</h2> <p class ="details">-Részletek</p> <button onclick ="switchfirst()" class ="applybtn">Jelentkezés</button>
+    <script>
+        function switchfirst(){
+            document.getElementsByClassName("applybtn")[0].innerHTML = '<button onclick="switchback()" class = "rejectbtn"> Visszavonás</button>';
+        }
+
+        function switchback(){
+            document.getElementsByClassName("rejectbtn")[0].innerHTML = '<button onclick ="switchfirst()" class ="applybtn">Jelentkezés</button>';
+        }
+    </script>
+</div>
+
+</div>

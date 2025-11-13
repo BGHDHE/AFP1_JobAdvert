@@ -8,6 +8,13 @@ import { RegistrationComponent } from './pages/registration/registration';
 export const routes: Routes = [
   {path: '', component: HomeComponent},
   { path: 'register', component: RegistrationComponent },
+<<<<<<< Updated upstream
+=======
+  {path: 'login', component: Login},
+  { path: 'felhasznaloprofil', component: FelhasznaloprofilComponent},
+  { path: 'felhasznaloprofil', component: FelhasznaloprofilComponent},
+  { path: 'searchjobs', component: SearchJobsComponent}
+>>>>>>> Stashed changes
 ];
 
 @NgModule({

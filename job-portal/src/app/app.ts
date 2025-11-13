@@ -2,6 +2,7 @@ import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { Header } from './header/header';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
     RouterOutlet,
     ReactiveFormsModule,
     HttpClientModule,
+    Header
   ],
   templateUrl: './app.html',
   styleUrl: './app.css'

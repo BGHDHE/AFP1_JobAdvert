@@ -1,0 +1,72 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  line-height: 1.6;
+  color: #111;
+}
+
+.home-header {
+  background: rgba(59, 130, 246, 0.95);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding: 1rem 0;
+}
+
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo button {
+  background: linear-gradient(135deg, #fff, #e0f2fe);
+  -webkit-background-clip: text;
+  color: transparent;
+  font-size: 3rem;
+  font-weight: 800;
+  border: none;
+  cursor: pointer;
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.btn-login, .btn-register {
+  padding: 0.75rem 2rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  text-align: center;
+  color: white;
+}
+
+.btn-login {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.btn-login:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.btn-register {
+  background: linear-gradient(135deg, #fff, #e0f2fe);
+  color: #2563eb;
+}
+
+.btn-register:hover {
+  transform: scale(1.05);
+}
