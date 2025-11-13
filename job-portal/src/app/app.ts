@@ -2,7 +2,6 @@ import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { FelhasznaloprofilComponent } from './pages/felhasznaloprofil/felhasznaloprofil';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +10,6 @@ import { FelhasznaloprofilComponent } from './pages/felhasznaloprofil/felhasznal
     RouterOutlet,
     ReactiveFormsModule,
     HttpClientModule,
-    FelhasznaloprofilComponent
   ],
   templateUrl: './app.html',
   styleUrls: ['./app.css']

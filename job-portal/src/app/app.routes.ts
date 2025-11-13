@@ -7,13 +7,13 @@ import { Login } from './pages/login/login';
 import { FelhasznaloprofilComponent } from './pages/felhasznaloprofil/felhasznaloprofil';
 import { SearchJobsComponent } from './pages/searchjobs/searchjobs';
 
-// export a routes változót
 export const routes: Routes = [
   {path: '', component: HomeComponent},
   { path: 'register', component: RegistrationComponent },
   { path: '', redirectTo: '/register', pathMatch: 'full' },
-  {path: 'login', component: Login}
-  { path: 'felhasznaloprofil', component: FelhasznaloprofilComponent}
+  {path: 'login', component: Login},
+  { path: 'felhasznaloprofil', component: FelhasznaloprofilComponent},
+  { path: 'felhasznaloprofil', component: FelhasznaloprofilComponent},
   { path: 'searchjobs', component: SearchJobsComponent}
 ];
 
