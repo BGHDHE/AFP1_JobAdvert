@@ -3,11 +3,13 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HomeComponent } from './pages/home/home';
 import { RegistrationComponent } from './pages/registration/registration';
+import { SearchJobsComponent } from './pages/searchjobs/searchjobs';
 
 // export a routes változót
 export const routes: Routes = [
   {path: '', component: HomeComponent},
   { path: 'register', component: RegistrationComponent },
+  { path: 'searchjobs', component: SearchJobsComponent}
 ];
 
 @NgModule({
