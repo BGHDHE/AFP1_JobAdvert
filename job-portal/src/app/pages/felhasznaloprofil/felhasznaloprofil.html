@@ -1,0 +1,17 @@
+<div class="profile-container">
+  <h2>Felhasználói profil</h2>
+
+  <div class="user-info">
+    <p><strong>Név:</strong> {{ user.name }}</p>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+    <p><strong>Lakhely:</strong> {{ user.location }}</p>
+    <p><strong>Telefonszám:</strong> {{ user.phone }}</p>
+    <p><strong>Jelenleg van-e állása?</strong> {{ user.hasJob ? 'Igen' : 'Nem' }}</p>
+  </div>
+
+  <div class="applications">
+    <h3>Jelentkezett állások</h3>
+    <!-- Ide szúrjuk be a HTML-t a TS-ből -->
+    <div [innerHTML]="applicationsHtml"></div>
+  </div>
+</div>

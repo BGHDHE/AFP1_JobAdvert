@@ -2,18 +2,20 @@ import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { FelhasznaloprofilComponent } from './pages/felhasznaloprofil/felhasznaloprofil';
 
 @Component({
   selector: 'app-root',
-
+  standalone: true,  // standalone komponens
   imports: [
     RouterOutlet,
     ReactiveFormsModule,
     HttpClientModule,
+    FelhasznaloprofilComponent
   ],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrls: ['./app.css']
 })
-export class App {
+export class AppComponent {
   protected readonly title = signal('job-portal');
 }
