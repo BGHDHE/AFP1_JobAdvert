@@ -1,38 +1,40 @@
-<div class="registration-container">
-  <h2>Regisztráció</h2>
+<section class="hero-section">
+  <div class="hero-content">
+    <h2 class="hero-title">Regisztráció</h2>
+    <p class="hero-subtitle">Csatlakozzon hozzánk és találja meg álmai állását</p>
 
-  <div class="form-group">
-    <label for="name">Név:</label>
-    <input id="name" type="text">
+    <div class="registration-container">
+      <div class="search-box">
+        <div class="form-group">
+          <input id="name" type="text" placeholder="Név" class="search-input">
+        </div>
+
+        <div class="form-group">
+          <input id="email" type="email" placeholder="Email" class="search-input">
+        </div>
+
+        <div class="form-group">
+          <input id="password" type="password" placeholder="Jelszó" class="search-input">
+        </div>
+
+        <div class="form-group">
+          <input id="location" type="text" placeholder="Lakhely" class="search-input">
+        </div>
+
+        <div class="form-group">
+          <input id="phone" type="tel" placeholder="Telefonszám" class="search-input">
+        </div>
+
+        <div class="form-group">
+          <select id="hasJob" class="dropdown-select">
+            <option value="">Jelenleg van-e állása?</option>
+            <option value="true">Igen</option>
+            <option value="false">Nem</option>
+          </select>
+        </div>
+
+        <button class="search-btn" (click)="register()">Regisztráció</button>
+      </div>
+    </div>
   </div>
-
-  <div class="form-group">
-    <label for="email">Email:</label>
-    <input id="email" type="email">
-  </div>
-
-  <div class="form-group">
-    <label for="password">Jelszó:</label>
-    <input id="password" type="password">
-  </div>
-
-  <div class="form-group">
-    <label for="location">Lakhely:</label>
-    <input id="location" type="text">
-  </div>
-
-  <div class="form-group">
-    <label for="phone">Telefonszám:</label>
-    <input id="phone" type="tel">
-  </div>
-
-  <div class="form-group">
-    <label for="hasJob">Jelenleg van-e állása?</label>
-    <select id="hasJob">
-      <option value="true">Igen</option>
-      <option value="false">Nem</option>
-    </select>
-  </div>
-
-  <button (click)="register()">Regisztráció</button>
-</div>
+</section>
