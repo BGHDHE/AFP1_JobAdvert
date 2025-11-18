@@ -6,7 +6,6 @@
   color: #1f2937;
 }
 
-/* Felső sáv – kereső + gombok */
 .top-bar {
   display: flex;
   justify-content: space-between;
@@ -21,7 +20,6 @@
   z-index: 1000;
 }
 
-/* Keresőmező */
 .search-input {
   width: 40%;
   padding: 10px 1rem;
@@ -38,7 +36,6 @@
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.25);
 }
 
-/* Profil, kijelentkezés, állások gombok */
 .Seeker_Profile {
   display: flex;
   gap: 1rem;
@@ -59,13 +56,12 @@
   background-color: #1d4ed8;
 }
 
-/* Az állások listája lejjebb tolva, hogy ne takarja a fix sáv */
 .Jobs_List {
-  margin-top: 120px; /* hely a top bar alatt */
+  margin-top: 120px;
   margin-left: 5%;
 }
 
-/* Elérhető állások cím */
+
 .joblisttitle {
   font-size: 1.7rem;
   font-weight: bold;
@@ -74,7 +70,6 @@
   text-align: left;
 }
 
-/* Egy álláskártya */
 .example {
   display: flex;
   flex-direction: column;
@@ -107,7 +102,7 @@
   color: #4b5563;
 }
 
-/* Jelentkezés / visszavonás gombok */
+
 button {
   background-color: #2563eb;
   color: white;
