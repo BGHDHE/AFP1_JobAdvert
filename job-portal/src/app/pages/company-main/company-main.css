@@ -1,0 +1,95 @@
+body {
+  font-family: "Inter", sans-serif;
+  background: #f8fafc;
+  margin: 0;
+  padding: 0;
+  color: #1f2937;
+}
+
+.new_job {
+  margin: 20px 0 0 5%;
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.new_job:hover {
+  background-color: #1d4ed8;
+}
+
+.jobs {
+  font-size: 1.7rem;
+  font-weight: bold;
+  margin: 20px 0;
+  color: #1f2937;
+  margin-left: 5%;
+  text-align: left;
+}
+
+.example {
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  transition: transform 0.3s, box-shadow 0.3s;
+  margin: 0 0 20px 5%;
+}
+
+.example:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.jobname {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #1f2937;
+}
+
+.details {
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #4b5563;
+}
+
+button {
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 10px;
+  margin-right: 10px;
+  width: fit-content;
+}
+
+button:hover {
+  background-color: #1d4ed8;
+}
+
+button.delete {
+  background-color: #dc2626;
+}
+
+button.delete:hover {
+  background-color: #b91c1c;
+}
+
+button.edit {
+  background-color: #059669;
+}
+
+button.edit:hover {
+  background-color: #047857;
+}
