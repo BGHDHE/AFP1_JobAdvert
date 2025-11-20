@@ -14,7 +14,8 @@ export const routes: Routes = [
   {path: 'login', component: Login},
   { path: 'felhasznaloprofil', component: FelhasznaloprofilComponent},
   { path: 'felhasznaloprofil', component: FelhasznaloprofilComponent},
-  { path: 'searchjobs', component: SearchJobsComponent}
+  { path: 'searchjobs', component: SearchJobsComponent},
+ {path: 'bejelentkezes',loadComponent: () => import('./bejelentkezes/bejelentkezes').then(m => m.BejelentkezesComponent)}
 ];
 
 @NgModule({
