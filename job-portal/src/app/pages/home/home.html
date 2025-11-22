@@ -2,15 +2,19 @@
   <div class="hero-content">
     <h1 class="hero-title">Find Your Dream Job</h1>
     <p class="hero-subtitle">Discover thousands of jobs from top companies</p>
-
-    <div class="search-container">
-      <div class="search-box">
-        <input type="text" placeholder="Job title, keywords..." class="search-input">
-        <input type="text" placeholder="City, country..." class="search-input">
-        <button class="search-btn" routerLink="/searchjobs">Search Jobs</button>
-      </div>
-    </div>
+<div class="search-container">
+  <div class="search-box">
+    <input 
+      type="text" 
+      [(ngModel)]="searchQuery"
+      (keyup.enter)="onSearch()"
+      placeholder="Search among jobs.."
+      class="search-input"
+    />
+    <button (click)="onSearch()" class="search-btn">Search</button>
   </div>
+</div>
+</div>
 </section>
 
 <section class="features-section">

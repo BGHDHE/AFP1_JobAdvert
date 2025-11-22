@@ -1,6 +1,7 @@
 <div class="searchjobs-container">
   <h2>Álláskeresés</h2>
 
-  <!-- Ide szúrjuk be a TypeScript-ben generált HTML-t -->
+  <div *ngIf="searchQuery" class="search-info"></div>
+
   <div [innerHTML]="jobsHtml"></div>
 </div>
