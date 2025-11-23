@@ -29,23 +29,29 @@ app.post('/api/register', (req, res) => {
 });
 
 app.get('/api/jobs/search', (req, res) => {
-  const q = (req.query.q || '').toString().trim();
+  const q = (req.query.q).toString().trim();
+  const location = (req.query.location).toString().trim();
 
-  const term = `%${q.toLowerCase()}%`;
-  db.all(
-    `SELECT * FROM jobs WHERE 
-       LOWER(title) LIKE ? OR 
-       LOWER(company) LIKE ? OR 
-       LOWER(location) LIKE ? OR 
-       LOWER(COALESCE(description, '')) LIKE ?`,
-    [term, term, term, term],
-    (err, rows) => {
-      if (err) {
-        return res.status(500).json({ error: err.message });
-      }
-      res.json(rows);
+  let sql = `SELECT * FROM jobs`;
+  const where = [];
+  const params = [];
+
+  if (q) {
+    where.push(`LOWER(title) LIKE ?`);
+    params.push(`%${q.toLowerCase()}%`);
+  }
+
+  if (location) {
+    where.push(`LOWER(location) LIKE ?`);
+    params.push(`%${location.toLowerCase()}%`);
+  }
+
+  db.all(sql, params, (err, rows) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
     }
-  );
+    res.json(rows);
+  });
 });
 
 app.listen(3000, () => {

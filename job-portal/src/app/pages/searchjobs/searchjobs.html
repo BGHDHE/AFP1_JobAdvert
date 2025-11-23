@@ -1,7 +1,22 @@
 <div class="searchjobs-container">
   <h2>Álláskeresés</h2>
 
-  <div *ngIf="searchQuery" class="search-info"></div>
+  <div *ngIf="searchQuery || locationQuery" class="search-info">
+    <p>Keresési feltételek: <strong>{{ searchQuery }}</strong> {{ locationQuery ? 'a következő helyen: ' + locationQuery : '' }}</p>
+  </div>
 
-  <div [innerHTML]="jobsHtml"></div>
+  <div *ngIf="searchResults.length === 0" class="no-results">
+    <p>Nincs találat a kereséshez.</p>
+  </div>
+
+  <div class="jobs-list" *ngIf="searchResults.length > 0">
+    <h3>Keresési eredmények: "{{ searchQuery }}" ({{ searchResults.length }})</h3>
+    <div *ngFor="let job of searchResults" class="job-card">
+      <h4>{{ job.title }}</h4>
+      <p><strong>Cég:</strong> {{ job.company }}</p>
+      <p><strong>Helyszín:</strong> {{ job.location }}</p>
+      <p><strong>Bér:</strong> {{ job.salary || 'Nem adott meg' }}</p>
+      <p>{{ job.description }}</p>
+    </div>
+  </div>
 </div>

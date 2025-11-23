@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
   searchQuery: string = '';
+  locationQuery: string = '';
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -20,17 +21,29 @@ export class HomeComponent implements OnInit {
 
   }
 
-  onSearch(): void {
-    if (this.searchQuery.trim() === '') {
-      return;
-    }
-      
-    this.http.get<any[]>(`http://localhost:3000/api/jobs/search?q=${encodeURIComponent(this.searchQuery)}`).subscribe({
-      next: (results) => {
-        this.router.navigate(['/searchjobs'], { 
-          state: { searchResults: results, searchQuery: this.searchQuery } 
-        });
-      },
-    });
+onSearch(): void {
+  if (this.searchQuery.trim() === '' && this.locationQuery.trim() === '') {
+    return;
   }
+
+  const params: any = {};
+  if (this.searchQuery.trim()) {
+    params.q = this.searchQuery.trim();
+  }
+  if (this.locationQuery.trim()) {
+    params.location = this.locationQuery.trim();
+  }
+
+  this.http.get<any[]>(`http://localhost:3000/api/jobs/search`, { params }).subscribe({
+    next: (results) => {
+      this.router.navigate(['/searchjobs'], {
+        state: {
+          searchResults: results,
+          searchQuery: this.searchQuery,
+          locationQuery: this.locationQuery
+        }
+      });
+    },
+  });
+}
 }
