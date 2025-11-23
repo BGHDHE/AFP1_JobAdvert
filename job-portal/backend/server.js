@@ -28,9 +28,10 @@ app.post('/api/register', (req, res) => {
   });
 });
 
+// JobSearch
 app.get('/api/jobs/search', (req, res) => {
-  const q = (req.query.q).toString().trim();
-  const location = (req.query.location).toString().trim();
+  const q = (req.query.q || '').toString().trim();
+  const location = (req.query.location || '').toString().trim();
 
   let sql = `SELECT * FROM jobs`;
   const where = [];
@@ -46,11 +47,15 @@ app.get('/api/jobs/search', (req, res) => {
     params.push(`%${location.toLowerCase()}%`);
   }
 
+  if (where.length > 0) {
+    sql += ` WHERE ` + where.join(' AND ');
+  }
+
   db.all(sql, params, (err, rows) => {
     if (err) {
       return res.status(500).json({ error: err.message });
     }
-    res.json(rows);
+    res.json(rows || []);
   });
 });
 

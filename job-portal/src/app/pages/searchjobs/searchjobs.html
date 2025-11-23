@@ -10,7 +10,6 @@
   </div>
 
   <div class="jobs-list" *ngIf="searchResults.length > 0">
-    <h3>Keresési eredmények: "{{ searchQuery }}" ({{ searchResults.length }})</h3>
     <div *ngFor="let job of searchResults" class="job-card">
       <h4>{{ job.title }}</h4>
       <p><strong>Cég:</strong> {{ job.company }}</p>

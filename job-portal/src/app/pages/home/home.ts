@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
 
   }
 
-onSearch(): void {
+  onSearch(): void {
   if (this.searchQuery.trim() === '' && this.locationQuery.trim() === '') {
     return;
   }
