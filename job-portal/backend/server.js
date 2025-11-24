@@ -28,6 +28,37 @@ app.post('/api/register', (req, res) => {
   });
 });
 
+// JobSearch
+app.get('/api/jobs/search', (req, res) => {
+  const q = (req.query.q || '').toString().trim();
+  const location = (req.query.location || '').toString().trim();
+
+  let sql = `SELECT * FROM jobs`;
+  const where = [];
+  const params = [];
+
+  if (q) {
+    where.push(`LOWER(title) LIKE ?`);
+    params.push(`%${q.toLowerCase()}%`);
+  }
+
+  if (location) {
+    where.push(`LOWER(location) LIKE ?`);
+    params.push(`%${location.toLowerCase()}%`);
+  }
+
+  if (where.length > 0) {
+    sql += ` WHERE ` + where.join(' AND ');
+  }
+
+  db.all(sql, params, (err, rows) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+    res.json(rows || []);
+  });
+});
+
 app.listen(3000, () => {
   console.log('Backend fut: http://localhost:3000');
   console.log('Adatbázis: jobportal1.db (fájl a backend mappában)');

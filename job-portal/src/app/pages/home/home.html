@@ -2,12 +2,23 @@
   <div class="hero-content">
     <h1 class="hero-title">Find Your Dream Job</h1>
     <p class="hero-subtitle">Discover thousands of jobs from top companies</p>
-
     <div class="search-container">
       <div class="search-box">
-        <input type="text" placeholder="Job title, keywords..." class="search-input">
-        <input type="text" placeholder="City, country..." class="search-input">
-        <button class="search-btn" routerLink="/searchjobs">Search Jobs</button>
+        <input
+          type="text"
+          [(ngModel)]="searchQuery"
+          (keyup.enter)="onSearch()"
+          placeholder="Job title, keywords..."
+          class="search-input"
+        />
+        <input
+          type="text"
+          [(ngModel)]="locationQuery"
+          (keyup.enter)="onSearch()"
+          placeholder="Location..."
+          class="search-input"
+        />
+        <button (click)="onSearch()" class="search-btn">Search</button>
       </div>
     </div>
   </div>
@@ -32,22 +43,21 @@
     </div>
   </div>
 </section>
-
 <section class="slop-section">
   <div class="container">
-<h3>JobPortal - Ahol álmaid állásai valósággá válnak</h3>
-Üdvözöljük a JobPortal-on, ahol a karrierépítés forradalmába kapcsolódhat! Nem csupán egy állásportál vagyunk, hanem egy átfogó karrierpartner, amely összeköti a tehetséges szakembereket a legjobb munkaadókkal. Platformunkat azoknak a modern munkavállalóknak terveztük, akik nem csak munkát keresnek, hanem olyan lehetőségeket, amelyek valóban illeszkednek a képességeikhez, értékeikhez és karriercéljaikhoz.
+    <h3>JobPortal – Where Your Dream Jobs Become Reality</h3>
+    Welcome to JobPortal, where you can become part of the revolution in career building! We are more than just a job board — we are a comprehensive career partner connecting talented professionals with top employers. Our platform is designed for modern job seekers who are looking not just for a job, but for opportunities that truly match their skills, values, and career goals.
 
-<h3>Miért válassza a JobPortal-t?</h3>
-Képzelje el, hogy reggel felkel, és tudja, hogy a munka, amit végez, nemcsak fizetést jelent, hanem személyes fejlődést és érzelmi elégedettséget is. Ez a valóság több mint 100 000 felhasználónk számára, akik a JobPortal segítségével találták meg álmaik állását. Naponta több ezer hitelesített álláshirdetést kínálunk a legdinamikusabb cégektől - a leendő unicorn startupoktól a Fortune 500 vállalatokig.
+    <h3>Why Choose JobPortal?</h3>
+    Imagine waking up in the morning knowing that your work brings not only a paycheck, but personal growth and emotional fulfillment. This is the reality for more than 100,000 of our users who found their dream job through JobPortal. We offer thousands of verified job openings every day from the most dynamic companies — from emerging unicorn startups to Fortune 500 corporations.
 
-<h3>Intelligens egyeztetés, ami tényleg működik</h3>
-Míg a hagyományos állásportálokon ön keres a lehetőségek között, addig nálunk a lehetőségek is megtalálnak önt. Okos algoritmusaink elemzik a képességeit, tapasztalatait és preferenciáit, hogy olyan állásajánlatokat javasoljanak, amelyek valóban illeszkednek a profiljához. Ez azt jelenti, hogy több időt tölthet a jelentkezéssel, kevesebbet az értelmetlen böngészéssel.
+    <h3>Smart Matching That Truly Works</h3>
+    While traditional job portals require you to search among countless listings, here opportunities will find you as well. Our intelligent algorithms analyze your skills, experience, and preferences to recommend job positions that genuinely fit your profile. This means you can spend more time applying and less time on meaningless browsing.
 
-<h3>Átlátható folyamat a kezdetektől a végéig</h3>
-A JobPortal nem csak az álláskeresést egyszerűsíti le, hanem az egész jelentkezési folyamatot. Profilja segítségével több pozícióra is jelentkezhet egyetlen kattintással, miközben nyomon követheti, hogy mely cégek tekintették meg önéletrajzát. Végre elmondhatja, hogy búcsút int a végtelen űrlapkitöltéseknek és a nyomtalanul eltűnt jelentkezéseknek.
+    <h3>A Transparent Process from Start to Finish</h3>
+    JobPortal not only simplifies job searching, but streamlines the entire application process. With your profile, you can apply to multiple positions with just one click, while tracking which companies have viewed your résumé. Finally, you can say goodbye to endless form filling and applications that disappear without a trace.
 
-<h3>Valódi kapcsolatok valódi cégekkel</h3>
-Platformunkon olyan vállalatok találhatók, amelyek komolyan veszik a tehetségmegőrzést és a munkavállalói fejlődést. Nemcsak álláslehetőségeket kínálunk, hanem betekintést is a cégkultúrába, a csapat dinamikába és a növekedési lehetőségekbe. Így döntései nemcsak a fizetésről, hanem a teljes karrierútjáról szólnak.
+    <h3>Real Connections with Real Companies</h3>
+    Our platform features companies that take talent retention and employee development seriously. We provide not only job opportunities but insights into company culture, team dynamics, and growth prospects. This way, your decisions are based not only on salary, but on your entire career journey.
   </div>
 </section>
