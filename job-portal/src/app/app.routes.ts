@@ -7,6 +7,7 @@ import { Login } from './pages/login/login';
 import { FelhasznaloprofilComponent } from './pages/felhasznaloprofil/felhasznaloprofil';
 import { SearchjobsComponent } from './pages/searchjobs/searchjobs';
 import { CompanyMain } from './pages/company-main/company-main';
+import { CompanyApplicants } from './pages/company-applicants/company-applicants';
 
 
 export const routes: Routes = [
@@ -18,7 +19,8 @@ export const routes: Routes = [
   { path: 'felhasznaloprofil', component: FelhasznaloprofilComponent},
   { path: 'searchjobs', component: SearchjobsComponent},
   {path: 'bejelentkezes',loadComponent: () => import('./bejelentkezes/bejelentkezes').then(m => m.BejelentkezesComponent)},
-  {path: 'company-main', component: CompanyMain}
+  {path: 'company-main', component: CompanyMain},
+  {path: 'company-applicants', component: CompanyApplicants}
 ];
 
 @NgModule({
