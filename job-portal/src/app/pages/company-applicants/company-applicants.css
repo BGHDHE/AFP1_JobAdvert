@@ -9,9 +9,7 @@ body {
 .profile,
 .return {
   position: absolute;
-  top: 20px;
-  right: 20px;
-
+  top: 110px;
   background-color: #2563eb;
   color: white;
   border: none;
@@ -21,6 +19,7 @@ body {
   cursor: pointer;
   transition: background-color 0.3s;
 }
+
 
 .profile {
   right: 120px;
