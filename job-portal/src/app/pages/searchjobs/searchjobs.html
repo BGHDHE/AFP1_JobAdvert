@@ -16,6 +16,7 @@
       <p><strong>Location:</strong> {{ job.location }}</p>
       <p><strong>Salary:</strong> {{ job.salary || 'Nem adott meg' }}</p>
       <p>{{ job.description }}</p>
+      <button class="apply-btn" (click)="onApply(job)">Jelentkezés</button>
     </div>
   </div>
 </div>
