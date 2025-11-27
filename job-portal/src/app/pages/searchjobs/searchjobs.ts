@@ -17,6 +17,7 @@ export class SearchjobsComponent implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit(): void {
+    window.scrollTo(0, 0);
     const state = this.router.getCurrentNavigation()?.extras.state || window.history.state;
 
     if (state && state.searchResults) {
