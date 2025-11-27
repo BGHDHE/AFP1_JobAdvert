@@ -1,16 +1,24 @@
-<div class = "Jobs_List">
-    <h2 class ="joblisttitle">Elérhető Állások</h2>
-<div class ="example">
-    <h2 class ="jobname">Állás</h2> <p class ="details">-Részletek</p> <button onclick ="switchfirst()" class ="applybtn">Jelentkezés</button>
-    <script>
-        function switchfirst(){
-            document.getElementsByClassName("applybtn")[0].innerHTML = '<button onclick="switchback()" class = "rejectbtn"> Visszavonás</button>';
-        }
-
-        function switchback(){
-            document.getElementsByClassName("rejectbtn")[0].innerHTML = '<button onclick ="switchfirst()" class ="applybtn">Jelentkezés</button>';
-        }
-    </script>
+<div class="Jobs_List" style="display:flex; justify-content:center; align-items:center; height:100vh;">
+  <div class="example" style="width: 350px; max-width:90%; padding:2rem; box-sizing:border-box;">
+    <h2 class="joblisttitle" style="text-align:center; margin-bottom:2rem;">Bejelentkezés</h2>
+    
+    <input type="email" id="email" class="search-input" placeholder="Email cím" style="width:100%; margin-bottom:1rem; box-sizing:border-box;">
+    <input type="password" id="password" class="search-input" placeholder="Jelszó" style="width:100%; margin-bottom:1.5rem; box-sizing:border-box;">
+    
+    <button onclick="login()" class="applybtn" style="width:100%;">Bejelentkezés</button>
+  </div>
 </div>
 
-</div>
+<script>
+  function login() {
+    const email = document.getElementById("email").value.trim();
+    const pass = document.getElementById("password").value.trim();
+
+    if (!email || !pass) {
+      alert("Kérlek töltsd ki az email és jelszó mezőt!");
+      return;
+    }
+
+    alert("Sikeres bejelentkezés!");
+  }
+</script>
