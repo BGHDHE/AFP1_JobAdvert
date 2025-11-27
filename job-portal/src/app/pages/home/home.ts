@@ -18,13 +18,12 @@ export class HomeComponent implements OnInit {
   constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit(): void {
+    window.scrollTo(0, 0);
 
   }
 
   onSearch(): void {
-  if (this.searchQuery.trim() === '' && this.locationQuery.trim() === '') {
-    return;
-  }
+
 
   const params: any = {};
   if (this.searchQuery.trim()) {
