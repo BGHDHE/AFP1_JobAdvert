@@ -1,106 +1,82 @@
-body {
-  font-family: "Inter", sans-serif;
-  background: #f8fafc;
-  margin: 0;
-  padding: 0;
-  color: #1f2937;
-}
-
-.new_job {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background-color: #2563eb;
+.hero-section {
+  background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+  padding: 6rem 2rem;
   color: white;
-  border: none;
-  border-radius: 6px;
-  padding: 10px 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.3s;
+  text-align: center;
 }
 
-.new_job:hover {
-  background-color: #1d4ed8;
+.hero-content {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
 }
 
-.jobs {
-  font-size: 1.7rem;
-  font-weight: bold;
-  margin: 60px 0 20px 5%;
-  color: #1f2937;
+.hero-title {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 2rem;
+}
+
+.job-container {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  padding: 2rem;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
 }
 
 .example {
+  background: rgba(255, 255, 255, 0.25);
+  padding: 1rem 1.5rem;
+  border-radius: 10px;
+  text-align: left;
+}
+
+.job-actions {
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 45%;
-  height: 200px;
-  background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  padding: 1.5rem;
-  transition: transform 0.3s, box-shadow 0.3s;
-  margin: 0 0 20px 5%;
-  position: relative;
+  justify-content: center;
+  gap: 1rem;
 }
 
-.example:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-}
-
-.jobname {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #1f2937;
-}
-
-.details {
-  font-weight: bold;
-  color: #4b5563;
-  text-align: center;
-  margin: auto;
-}
-
-
-.controls {
-  display: flex;
-  gap: 10px;
-  position: absolute;
-  bottom: 15px;
-  right: 15px;
-}
-
-button {
-  background-color: #2563eb;
-  color: white;
+.new_job, .delete_all {
+  padding: 0.75rem 1.5rem;
   border: none;
-  border-radius: 6px;
-  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.3s;
-  width: fit-content;
 }
 
-button:hover {
-  background-color: #1d4ed8;
+.new_job {
+  background-color: #10b981;
+  color: white;
 }
 
-button.delete {
-  background-color: #dc2626;
+.new_job:hover {
+  background-color: #047857;
 }
 
-button.delete:hover {
+.delete_all {
+  background-color: #ef4444;
+  color: white;
+}
+
+.delete_all:hover {
   background-color: #b91c1c;
 }
 
-button.edit {
-  background-color: #059669;
+@media (max-width: 768px) {
+  .hero-title { font-size: 2.5rem; }
+  .job-actions { flex-direction: column; gap: 0.5rem; }
+  .new_job, .delete_all { width: 100%; }
 }
 
-button.edit:hover {
-  background-color: #047857;
+@media (max-width: 480px) {
+  .hero-section { padding: 4rem 1rem; }
+  .hero-title { font-size: 2rem; }
+  .job-container { padding: 1rem; }
 }
