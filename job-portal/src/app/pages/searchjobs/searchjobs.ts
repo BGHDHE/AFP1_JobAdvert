@@ -27,4 +27,8 @@ export class SearchjobsComponent implements OnInit {
       console.log('Search results:', this.searchResults);
     }
   }
+
+  onApply(job: any): void {
+    alert(`Jelentkezés elküldve: ${job.title}`);
+  }
 }

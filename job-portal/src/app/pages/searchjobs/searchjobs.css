@@ -1,99 +1,71 @@
-/* Teljes oldal háttér és konténer */
-body {
-  background-color: #e6f2ff; /* világoskék háttér */
-  margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
 .searchjobs-container {
-  max-width: 1200px;
-  margin: 30px auto;
-  padding: 0 20px;
+  background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+  margin:auto;
+  padding: 2rem;
 }
 
-/* Oldal cím */
-.searchjobs-container h2 {
-  text-align: center;
-  margin-bottom: 30px;
-  color: #003366;
-}
-
-/* Flex konténer az állásoknak */
-.jobs-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-}
-
-/* Egy állás kártya */
 .job-card {
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 12px;
-  padding: 20px;
-  width: 300px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-  transition: transform 0.2s, box-shadow 0.2s;
+  background: rgba(59, 130, 246, 0.08);
+  background: linear-gradient(135deg, #1e40af 100%, #3b82f6 0%);
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.5rem;
+  color: white;
+  border-radius: 6px;
 }
 
-.job-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+@media (max-width: 768px) {
+  .search-box { flex-direction: column; align-items: stretch; }
+  .jobs-list { grid-template-columns: 1fr; }
 }
 
-/* Állás címe */
-.job-card h3 {
-  margin-top: 0;
-  color: #007bff;
-  font-size: 1.2rem;
+@media (max-width: 480px) {
+  .searchjobs-container { padding: 1rem; }
+  .job-card h4 { font-size: 1rem; }
 }
 
-/* Céges információk */
-.company-info {
-  background-color: #f0f8ff;
-  padding: 10px 12px;
-  margin: 12px 0;
-  border-radius: 8px;
-  border-left: 4px solid #007bff;
+
+
+h2 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin: 2rem 0 1rem;
+  margin-bottom: 1.5rem;
+  opacity: 0.9;
+  color: white;
 }
 
-.company-info p {
-  margin: 5px 0;
-  font-size: 0.9rem;
-  color: #333;
-}
-
-/* Jelentkezés gomb */
-button {
-  padding: 10px 16px;
+.apply-btn {
+  display: block;
+  width: 30%;
+  padding: 0.75rem 1rem;
+  margin-top: 1rem;
+  background: #2563eb;
+  color: white;
   border: none;
   border-radius: 6px;
-  background-color: #007bff;
-  color: white;
-  font-weight: 500;
+  font-size: 0.95rem;
+  font-weight: 600;
   cursor: pointer;
-  width: 100%;
-  transition: background-color 0.2s;
+  transition: background-color 0.3s;
 }
 
-button:hover:not([disabled]) {
-  background-color: #0056b3;
+.apply-btn:hover {
+  background: #1d4ed8;
 }
 
-button[disabled] {
-  background-color: #aaa;
-  cursor: default;
-}
-
-/* Mobilra optimalizálás */
 @media (max-width: 768px) {
-  .jobs-grid {
-    flex-direction: column;
-    align-items: center;
-  }
+  .logo h1 { font-size: 2rem; }
+  .btn-login, .btn-register { padding: 0.6rem 1.5rem; font-size: 0.9rem; }
+  .hero-title { font-size: 2.5rem; }
+  .search-box { flex-direction: column; }
+  .features-grid { grid-template-columns: 1fr; }
+  .slop-section { padding: 3rem 1.5rem; }
+}
 
-  .job-card {
-    width: 90%;
-  }
+@media (max-width: 480px) {
+  .hero-section { padding: 4rem 1rem; }
+  .hero-title { font-size: 2rem; }
+  .section-title { font-size: 2rem; }
+  .auth-buttons { flex-direction: column; gap: 0.5rem; }
+  .btn-login, .btn-register { width: 120px; }
 }
