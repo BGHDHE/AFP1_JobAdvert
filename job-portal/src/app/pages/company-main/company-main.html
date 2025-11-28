@@ -1,17 +1,32 @@
 <div class="hero-section">
-  <div class="hero-content">
-    <h2 class="hero-title">Hirdetett állásaim</h2>
 
-    <div id="job-list" class="job-container">
-      <div class="example" style="display: none;">
-        <h3 class="jobname"></h3>
-        <p class="details"></p>
+  <div *ngIf="!loading && jobs.length === 0 && !error" class="job-container">
+    <p>Nincs még hirdetésed. Kattints az alábbi gombra az első hirdetés létrehozásához!</p>
+  </div>
+
+  <div *ngIf="!loading && jobs.length > 0" class="hero-content">
+    <div *ngFor="let job of jobs" class="job-container">
+      <div>
+        <h2 class="hero-title">{{ job.title }}</h2>
+        
+        <p><strong>Cég:</strong> {{ job.company }}</p>
+        <p><strong>Helyszín:</strong> {{ job.location }}</p>
+        <p><strong>Bér:</strong> {{ job.salary }}</p>
+        
+        <p>
+          <strong>Leírás:</strong><br>
+          {{ job.description }}
+        </p>
+      </div>
+
+      <div class="job-actions">
+        <button class="new_job" (click)="editJob(job.id)">Szerkesztés</button>
+        <button class="delete_all" (click)="deleteJob(job.id)">Törlés</button>
       </div>
     </div>
+  </div>
 
-    <div class="job-actions">
-      <button class="new_job">Hozzáadás</button>
-      <button class="delete_all">Törlés</button>
-    </div>
+  <div class="job-actions">
+    <button class="new_job" (click)="createNewJob()">+ Új hirdetés</button>
   </div>
 </div>
