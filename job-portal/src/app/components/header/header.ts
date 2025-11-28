@@ -10,10 +10,10 @@ import { AuthService } from '../../services/auth';
   templateUrl: './header.html',
   styleUrls: ['./header.css']
 })
-
 export class Header implements OnInit {
   isLoggedIn = false;
   user: any = null;
+  role: string | null = null;
 
   constructor(private authService: AuthService) {}
 
@@ -21,6 +21,7 @@ export class Header implements OnInit {
     this.authService.user$.subscribe(user => {
       this.user = user;
       this.isLoggedIn = !!user;
+      this.role = user?.role ?? null;
     });
   }
 

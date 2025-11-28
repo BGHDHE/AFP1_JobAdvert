@@ -21,7 +21,11 @@ export class AuthService {
   }
 
   isLoggedIn(): boolean {
-    return this.userSubject.value !== null;
+    return !!this.userSubject.value;
+  }
+
+  getRole(): string | null {
+    return this.userSubject.value?.role ?? null;
   }
 
   logout() {
