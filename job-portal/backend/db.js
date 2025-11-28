@@ -1,48 +1,44 @@
 const sqlite3 = require('sqlite3').verbose();
-const path = require('path');
 
-const dbPath = path.join(__dirname, 'jobportal1.db');
-const db = new sqlite3.Database(dbPath, (err) => {
+const db = new sqlite3.Database('./jobportal1.db', (err) => {
   if (err) {
-    console.error('DB csatlakozási hiba:', err);
+    console.error('Nem lehet megnyitni az adatbázist:', err);
   } else {
-    console.log('SQLite adatbázis kész: jobportal1.db');
+    console.log('SQLite adatbázis csatlakoztatva.');
   }
 });
 
+db.run('PRAGMA foreign_keys = ON');
+
+// TÁBLÁK LÉTREHOZÁSA
 db.serialize(() => {
-  // 1. USERS tábla
+  // USERS TABLE
   db.run(`
     CREATE TABLE IF NOT EXISTS users (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
-      username TEXT UNIQUE NOT NULL,
-      email TEXT UNIQUE NOT NULL,
+      username TEXT NOT NULL,
+      email TEXT NOT NULL UNIQUE,
       password_hash TEXT NOT NULL,
-      role TEXT NOT NULL
+      role TEXT NOT NULL DEFAULT 'employer',
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP
     )
-  `, (err) => {
-    if (err) console.error('users tábla hiba:', err);
-    else console.log('users tábla kész vagy létezik');
-  });
+  `);
 
-  // 2. JOBS tábla
+  // JOBS TABLE
   db.run(`
     CREATE TABLE IF NOT EXISTS jobs (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       title TEXT NOT NULL,
-      description TEXT,
-      company TEXT,
-      location TEXT,
-      email TEXT,
+      description TEXT NOT NULL,
+      company TEXT NOT NULL,
+      location TEXT NOT NULL,
+      email TEXT NOT NULL,
       salary TEXT,
       employer_id INTEGER,
-      FOREIGN KEY (employer_id) REFERENCES users(id)
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      FOREIGN KEY (employer_id) REFERENCES users (id) ON DELETE CASCADE
     )
-  `, (err) => {
-    if (err) console.error('jobs tábla hiba:', err);
-    else console.log('jobs tábla kész vagy létezik');
-  });
+  `);
 });
 
-// Exportáld a db-t
 module.exports = db;

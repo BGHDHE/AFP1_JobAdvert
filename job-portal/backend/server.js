@@ -59,6 +59,28 @@ app.get('/api/jobs/search', (req, res) => {
   });
 });
 
+//Login
+app.post('/api/login', (req, res) => {
+  const { email, password } = req.body;
+
+  db.get(`SELECT * FROM users WHERE email = ?`, [email], (err, user) => {
+    if (err) return res.json({ success: false });
+
+    if (!user) return res.json({ success: false });
+    if (password !== user.password_hash) return res.json({ success: false });
+
+    res.json({
+      success: true,
+      user: {
+        id: user.id,
+        email: user.email,
+        role: user.role
+      }
+    });
+  });
+});
+
+
 app.listen(3000, () => {
   console.log('Backend fut: http://localhost:3000');
   console.log('Adatbázis: jobportal1.db (fájl a backend mappában)');
