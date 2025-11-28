@@ -4,9 +4,15 @@
       <button routerLink="">JobPortal</button>
     </div>
 
-    <div class="auth-buttons">
-      <button class="btn-login" routerLink="/login">Login</button>
-      <button class="btn-register" routerLink="/register">Register</button>
+    <div class="auth-buttons"> 
+      <a *ngIf="isLoggedIn && role === 'employee'" routerLink="/felhasznaloprofil" class="btn-login">{{ user?.username}}'s profile</a>
+      <a *ngIf="isLoggedIn && role === 'employer'" routerLink="/company-main" class="btn-login">{{ user?.username}}'s profile</a>
+      <a *ngIf="isLoggedIn" routerLink="" (click)="logout()" class="btn-register">Logout</a>
+      
+      <ng-container *ngIf="!isLoggedIn">
+        <a routerLink="/login" class="btn-login">Login</a>
+        <a routerLink="/registration" class="btn-register">Register</a>
+      </ng-container>
     </div>
   </div>
 </header>

@@ -59,6 +59,46 @@ app.get('/api/jobs/search', (req, res) => {
   });
 });
 
+//Login
+app.post('/api/login', async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    const user = await new Promise((resolve, reject) =>
+      db.get('SELECT * FROM users WHERE email = ? AND password_hash = ?', [email, password], (err, row) => {
+        if (err) reject(err);
+        else resolve(row);
+      })
+    );
+
+    if (!user) {
+      return res.json({ success: false });
+    }
+
+    const job = await new Promise((resolve, reject) =>
+      db.get('SELECT 1 FROM jobs WHERE email = ?', [email], (err, row) => {
+        if (err) reject(err);
+        else resolve(row);
+      })
+    );
+
+    const isCompanyUser = !!job;
+
+    res.json({
+      success: true,
+      user,
+      isCompanyUser
+    });
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ success: false });
+  }
+});
+
+
+
+
 app.listen(3000, () => {
   console.log('Backend fut: http://localhost:3000');
   console.log('Adatbázis: jobportal1.db (fájl a backend mappában)');
