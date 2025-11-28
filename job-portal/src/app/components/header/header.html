@@ -5,8 +5,15 @@
     </div>
 
     <div class="auth-buttons">
-      <button class="btn-login" routerLink="/login">Login</button>
-      <button class="btn-register" routerLink="/register">Register</button>
+      <ng-container *ngIf="isLoggedIn">
+        <span class="btn-register">{{ user?.email || user?.username }}</span>
+        <button routerLink="" (click)="logout()" class="btn-login">Kijelentkezés</button>
+      </ng-container>
+      
+      <ng-container *ngIf="!isLoggedIn">
+        <a routerLink="/login" class="btn-login">Bejelentkezés</a>
+        <a routerLink="/registration" class="btn-register">Regisztráció</a>
+      </ng-container>
     </div>
   </div>
 </header>

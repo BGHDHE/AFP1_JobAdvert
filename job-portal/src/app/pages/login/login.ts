@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../../services/auth';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,7 @@ export class Login {
   password: string = '';
   loading: boolean = false;
 
-  constructor(private router: Router, private http: HttpClient) {}
+  constructor(private router: Router, private http: HttpClient, private authService: AuthService) {}
 
   login() {
     this.loading = true;
@@ -29,8 +30,7 @@ export class Login {
         this.loading = false;
 
         if (res.success) {
-          localStorage.setItem('user', JSON.stringify(res.user));
-
+          this.authService.setUser(res.user);
           this.router.navigate(['/company-main']);
         } 
         else {
