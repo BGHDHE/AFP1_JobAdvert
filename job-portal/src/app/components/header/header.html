@@ -6,7 +6,7 @@
 
     <div class="auth-buttons">
       <ng-container *ngIf="isLoggedIn">
-        <span class="btn-register">{{ user?.email || user?.username }}</span>
+        <span  routerLink="/company-main" class="btn-register">{{ user?.email}}</span>
         <button routerLink="" (click)="logout()" class="btn-login">Kijelentkezés</button>
       </ng-container>
       

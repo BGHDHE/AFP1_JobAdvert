@@ -60,25 +60,43 @@ app.get('/api/jobs/search', (req, res) => {
 });
 
 //Login
-app.post('/api/login', (req, res) => {
+app.post('/api/login', async (req, res) => {
   const { email, password } = req.body;
 
-  db.get(`SELECT * FROM users WHERE email = ?`, [email], (err, user) => {
-    if (err) return res.json({ success: false });
+  try {
+    const user = await new Promise((resolve, reject) =>
+      db.get('SELECT * FROM users WHERE email = ? AND password_hash = ?', [email, password], (err, row) => {
+        if (err) reject(err);
+        else resolve(row);
+      })
+    );
 
-    if (!user) return res.json({ success: false });
-    if (password !== user.password_hash) return res.json({ success: false });
+    if (!user) {
+      return res.json({ success: false });
+    }
+
+    const job = await new Promise((resolve, reject) =>
+      db.get('SELECT 1 FROM jobs WHERE email = ?', [email], (err, row) => {
+        if (err) reject(err);
+        else resolve(row);
+      })
+    );
+
+    const isCompanyUser = !!job;
 
     res.json({
       success: true,
-      user: {
-        id: user.id,
-        email: user.email,
-        role: user.role
-      }
+      user,
+      isCompanyUser
     });
-  });
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ success: false });
+  }
 });
+
+
 
 
 app.listen(3000, () => {

@@ -13,9 +13,9 @@ import { AuthService } from '../../services/auth';
   styleUrls: ['./login.css'],
 })
 export class Login {
-  email: string = '';
-  password: string = '';
-  loading: boolean = false;
+  email = '';
+  password = '';
+  loading = false;
 
   constructor(private router: Router, private http: HttpClient, private authService: AuthService) {}
 
@@ -31,15 +31,19 @@ export class Login {
 
         if (res.success) {
           this.authService.setUser(res.user);
-          this.router.navigate(['/company-main']);
-        } 
-        else {
-          alert('Helytelen email vagy jelszó!');
+
+          if (res.isCompanyUser) {
+            this.router.navigate(['/company-main']);
+          } else {
+            this.router.navigate(['']);
+          }
+        } else {
+          alert('Wrong data');
         }
       },
       error: () => {
         this.loading = false;
-        alert('Hiba történt a bejelentkezéskor.');
+        alert('Error');
       }
     });
   }

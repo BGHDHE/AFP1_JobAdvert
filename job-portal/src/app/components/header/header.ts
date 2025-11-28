@@ -10,22 +10,21 @@ import { AuthService } from '../../services/auth';
   templateUrl: './header.html',
   styleUrls: ['./header.css']
 })
+
 export class Header implements OnInit {
-  isLoggedIn: boolean = false;
+  isLoggedIn = false;
   user: any = null;
 
   constructor(private authService: AuthService) {}
 
-ngOnInit(): void {
-  this.authService.user$.subscribe(user => {
-    this.user = user;
-    this.isLoggedIn = !!user;
-  });
-}
+  ngOnInit(): void {
+    this.authService.user$.subscribe(user => {
+      this.user = user;
+      this.isLoggedIn = !!user;
+    });
+  }
 
   logout(): void {
     this.authService.logout();
-    this.isLoggedIn = false;
-    this.user = null;
   }
 }

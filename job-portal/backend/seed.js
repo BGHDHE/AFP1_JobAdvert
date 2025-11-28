@@ -1,11 +1,11 @@
 const db = require('./db');
 
-function insertUser(username, email, password_hash) {
+function insertUser(username, email, password_hash, role = 'employer') {
   return new Promise((res, rej) => {
     db.run(
       `INSERT INTO users (username, email, password_hash, role)
        VALUES (?, ?, ?, ?)`,
-      [username, email, password_hash, 'employer'],
+      [username, email, password_hash, role],
       function (err) {
         if (err) return rej(err);
         res(this.lastID);
@@ -13,6 +13,7 @@ function insertUser(username, email, password_hash) {
     );
   });
 }
+
 
 function getUserByEmail(email) {
   return new Promise((res, rej) => {
@@ -30,7 +31,7 @@ async function getOrCreateUser(email) {
   const username = email.split('@')[0];
   const defaultPassword = 'asd';
 
-  const newId = await insertUser(username, email, defaultPassword);
+  const newId = await insertUser(username, email, defaultPassword, 'employer');
   return newId;
 }
 
@@ -64,6 +65,7 @@ async function seed() {
       console.log('Seed kihagyva: a jobs tábla nem üres.');
       process.exit(0);
     }
+
 
     await insertJobWithAdmin({
       title: 'Frontend Developer (Angular)',
@@ -163,6 +165,8 @@ async function seed() {
       email: 'servercore@example.com',
       salary: '550000 HUF'
     });
+
+    await insertUser('testUser', 'user@example.com', 'asd', 'employee');
 
     console.log('Seed kész.');
     process.exit(0);

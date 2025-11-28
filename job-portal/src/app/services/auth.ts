@@ -1,18 +1,14 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class AuthService {
   private userSubject = new BehaviorSubject<any>(null);
   user$ = this.userSubject.asObservable();
 
   constructor() {
     const savedUser = localStorage.getItem('user');
-    if (savedUser) {
-      this.userSubject.next(JSON.parse(savedUser));
-    }
+    if (savedUser) this.userSubject.next(JSON.parse(savedUser));
   }
 
   setUser(user: any) {
@@ -26,7 +22,6 @@ export class AuthService {
 
   isLoggedIn(): boolean {
     return this.userSubject.value !== null;
-
   }
 
   logout() {
