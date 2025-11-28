@@ -1,14 +1,14 @@
 const db = require('./db');
 
 db.serialize(() => {
-  db.run('DELETE FROM jobs', (err) => {
-    if (err) console.error('Jobs törlési hiba:', err);
-    else console.log('Jobs tábla kiürítve');
+  db.run('DROP TABLE IF EXISTS jobs', (err) => {
+    if (err) console.error('Jobs tábla törlési hiba:', err);
+    else console.log('Jobs tábla törölve');
   });
 
-  db.run('DELETE FROM users', (err) => {
-    if (err) console.error('Users törlési hiba:', err);
-    else console.log('Users tábla kiürítve');
+  db.run('DROP TABLE IF EXISTS users', (err) => {
+    if (err) console.error('Users tábla törlési hiba:', err);
+    else console.log('Users tábla törölve');
   });
 
   setTimeout(() => process.exit(0), 500);

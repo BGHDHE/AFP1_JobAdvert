@@ -33,6 +33,7 @@ db.serialize(() => {
       description TEXT,
       company TEXT,
       location TEXT,
+      email TEXT,
       salary TEXT,
       employer_id INTEGER,
       FOREIGN KEY (employer_id) REFERENCES users(id)

@@ -13,11 +13,11 @@ function insertUser(username, email, password_hash) {
   });
 }
 
-function insertJob(title, description, company, location, salary, employer_id) {
+function insertJob(title, description, company, location, email, salary, employer_id) {
   return new Promise((res, rej) => {
     db.run(
-      `INSERT INTO jobs (title, description, company, location, salary, employer_id) VALUES (?, ?, ?, ?, ?, ?)`,
-      [title, description, company, location, salary, employer_id],
+      `INSERT INTO jobs (title, description, company, location, email, salary, employer_id) VALUES (?, ?, ?, ?, ?, ?, ?)`,
+      [title, description, company, location, email, salary, employer_id],
       function (err) {
         if (err) return rej(err);
         res(this.lastID);
@@ -42,6 +42,7 @@ await insertJob(
   'We are looking for an experienced Angular developer. HTML/CSS and TypeScript are required.',
   'WebSolutions Ltd.',
   'Budapest',
+  'websolutionsltd@example.com',
   '400000 HUF',
   emp1
 );
@@ -51,6 +52,7 @@ await insertJob(
   'Experience with Node.js, Express, and SQLite/SQL is a plus.',
   'TechFactory Corp.',
   'Debrecen',
+  'techfactorycorp@example.com',
   '650000 HUF',
   emp1
 );
@@ -60,6 +62,7 @@ await insertJob(
   'Testing experience and basic automation knowledge are required.',
   'QualityLab',
   'Szeged',
+  'qualitylab@example.com',
   '620000 HUF',
   emp1
 );
@@ -69,6 +72,7 @@ await insertJob(
   'We are seeking a full-stack engineer with strong React and Node.js knowledge. Experience with REST APIs is required.',
   'Innovatech Solutions',
   'Budapest',
+  'innovatechsolutions@example.com',
   '700000 HUF',
   emp1
 );
@@ -78,6 +82,7 @@ await insertJob(
   'Docker, Kubernetes, CI/CD pipelines and cloud platforms (AWS/Azure) experience is required.',
   'SysOps Group',
   'Győr',
+  'sysopsgroup@example.com',
   '800000 HUF',
   emp1
 );
@@ -87,6 +92,7 @@ await insertJob(
   'Experience in agile methodologies (Scrum/Kanban) and strong communication skills are required.',
   'PM Experts Ltd.',
   'Budapest',
+  'pmexpertsltd@example.com',
   '750000 HUF',
   emp1
 );
@@ -96,6 +102,7 @@ await insertJob(
   'Strong SQL skills, data visualization (Power BI/Tableau), and basic Python knowledge are required.',
   'DataWave Analytics',
   'Pécs',
+  'datawaveanalytics@example.com',
   '600000 HUF',
   emp1
 );
@@ -105,6 +112,7 @@ await insertJob(
   'Flutter and Dart experience are required. iOS/Android native knowledge is a plus.',
   'AppMasters',
   'Miskolc',
+  'appmasters@example.com',
   '680000 HUF',
   emp1
 );
@@ -114,6 +122,7 @@ await insertJob(
   'Network security, vulnerability scanning tools, and incident response experience are required.',
   'SecureNet Kft.',
   'Budapest',
+  'securenetkft@example.com',
   '900000 HUF',
   emp1
 );
@@ -123,6 +132,7 @@ await insertJob(
   'Automation frameworks (Selenium, Cypress) and API testing experience are required.',
   'TestPro Labs',
   'Szeged',
+  'testprolabs@example.com',
   '630000 HUF',
   emp1
 );
@@ -132,6 +142,7 @@ await insertJob(
   'Strong Linux administration skills, shell scripting, and server maintenance experience are required.',
   'ServerCore',
   'Debrecen',
+  'servercore@example.com',
   '550000 HUF',
   emp1
 );
