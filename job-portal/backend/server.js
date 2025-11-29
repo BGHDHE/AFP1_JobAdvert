@@ -96,8 +96,28 @@ app.post('/api/login', async (req, res) => {
   }
 });
 
+//Get-job
+app.get('/api/my-jobs/:employerId', (req, res) => {
+  const employerId = req.params.employerId;
 
+  if (!employerId || employerId === 'undefined') {
+    return res.status(400).json({ success: false, message: 'Employer ID hiányzik' });
+  }
 
+  db.all(
+    `SELECT * FROM jobs WHERE employer_id = ?`,
+    [employerId],
+    (err, rows) => {
+      if (err) {
+        return res.status(500).json({ success: false, message: 'DB hiba' });
+      }
+      res.json({
+        success: true,
+        jobs: rows || []
+      });
+    }
+  );
+});
 
 app.listen(3000, () => {
   console.log('Backend fut: http://localhost:3000');
