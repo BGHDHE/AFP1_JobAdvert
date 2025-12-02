@@ -8,6 +8,7 @@ import { FelhasznaloprofilComponent } from './pages/felhasznaloprofil/felhasznal
 import { SearchjobsComponent } from './pages/searchjobs/searchjobs';
 import { CompanyMain } from './pages/company-main/company-main';
 import { CompanyApplicants } from './pages/company-applicants/company-applicants';
+import { ApplicantJobs } from './pages/applicant-jobs/applicant-jobs';
 
 
 export const routes: Routes = [
@@ -20,7 +21,8 @@ export const routes: Routes = [
   { path: 'searchjobs', component: SearchjobsComponent},
   {path: 'bejelentkezes',loadComponent: () => import('./bejelentkezes/bejelentkezes').then(m => m.BejelentkezesComponent)},
   {path: 'company-main', component: CompanyMain},
-  {path: 'company-applicants', component: CompanyApplicants}
+  {path: 'company-applicants', component: CompanyApplicants},
+  {path:'applicant-jobs', component: ApplicantJobs}
 ];
 
 @NgModule({
