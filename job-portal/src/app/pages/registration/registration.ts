@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RegistrationService, RegisterUser } from '../../services/registration';
 import { AuthService } from '../../services/auth';
 
@@ -7,12 +7,16 @@ import { AuthService } from '../../services/auth';
   templateUrl: './registration.html',
   styleUrls: ['./registration.css']
 })
-export class RegistrationComponent {
+export class RegistrationComponent implements OnInit {
 
   constructor(
     private registrationService: RegistrationService,
     private authService: AuthService
   ) {}
+
+  ngOnInit(): void {
+    window.scrollTo(0, 0);
+  }
 
   register() {
     const username = (document.getElementById('name') as HTMLInputElement).value;
@@ -22,14 +26,14 @@ export class RegistrationComponent {
     const phone = (document.getElementById('phone') as HTMLInputElement).value;
     const hasJob = (document.getElementById('hasJob') as HTMLSelectElement).value === 'true';
 
-    const userData: RegisterUser = { 
-      username, 
-      email, 
-      password, 
-      role: 'employee', 
-      location, 
-      phone, 
-      hasJob 
+    const userData: RegisterUser = {
+      username,
+      email,
+      password,
+      role: 'employee',
+      location,
+      phone,
+      hasJob
     };
 
     this.registrationService.register(userData).subscribe({

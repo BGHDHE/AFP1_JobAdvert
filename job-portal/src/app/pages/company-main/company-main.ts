@@ -23,6 +23,7 @@ export class CompanyMain implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    window.scrollTo(0, 0);
     this.loadJobs();
   }
 
@@ -57,7 +58,7 @@ export class CompanyMain implements OnInit {
 
   }
 
-  deleteJob(jobId: number): void { 
+  deleteJob(jobId: number): void {
     alert('coming soon')
     }
 }

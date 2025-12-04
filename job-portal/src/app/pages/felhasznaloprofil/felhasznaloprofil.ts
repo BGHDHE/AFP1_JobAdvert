@@ -41,6 +41,7 @@ export class FelhasznaloprofilComponent implements OnInit {
 
   ngOnInit(): void {
     // Generáljuk a jelentkezések HTML-t
+    window.scrollTo(0, 0);
     if (this.user.applications.length > 0) {
       this.applicationsHtml = this.user.applications
         .map(app => `<p>${app.title} - Jelentkezve: ${app.dateApplied}</p>`)
