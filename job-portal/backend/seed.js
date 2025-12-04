@@ -1,6 +1,9 @@
 const db = require('./db');
+const bcrypt = require('bcrypt');
 
-function insertUser(username, email, password_hash, role = 'employer') {
+async function insertUser(username, email, password, role = 'employer') {
+  const password_hash = await bcrypt.hash(password, 10);
+
   return new Promise((res, rej) => {
     db.run(
       `INSERT INTO users (username, email, password_hash, role)
@@ -13,7 +16,6 @@ function insertUser(username, email, password_hash, role = 'employer') {
     );
   });
 }
-
 
 function getUserByEmail(email) {
   return new Promise((res, rej) => {
@@ -38,7 +40,7 @@ async function getOrCreateUser(email) {
 function insertJob(title, description, company, location, email, salary, employer_id) {
   return new Promise((res, rej) => {
     db.run(
-      `INSERT INTO jobs 
+      `INSERT INTO jobs
         (title, description, company, location, email, salary, employer_id)
        VALUES (?, ?, ?, ?, ?, ?, ?)`,
       [title, description, company, location, email, salary, employer_id],
@@ -165,8 +167,6 @@ async function seed() {
       email: 'servercore@example.com',
       salary: '550000 HUF'
     });
-
-    await insertUser('testUser', 'user@example.com', 'asd', 'employee');
 
     console.log('Seed kész.');
     process.exit(0);

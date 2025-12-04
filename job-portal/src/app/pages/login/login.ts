@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -12,12 +12,16 @@ import { AuthService } from '../../services/auth';
   imports: [CommonModule, FormsModule],
   styleUrls: ['./login.css'],
 })
-export class Login {
+export class Login implements OnInit {
   email = '';
   password = '';
   loading = false;
 
   constructor(private router: Router, private http: HttpClient, private authService: AuthService) {}
+
+  ngOnInit(): void {
+    window.scrollTo(0, 0);
+  }
 
   login() {
     this.loading = true;
