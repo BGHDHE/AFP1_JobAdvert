@@ -26,7 +26,7 @@ export class RegistrationComponent {
       username, 
       email, 
       password, 
-      role: 'employer', 
+      role: 'employee', 
       location, 
       phone, 
       hasJob 
