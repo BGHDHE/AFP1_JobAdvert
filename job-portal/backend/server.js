@@ -2,33 +2,44 @@
 const express = require('express');
 const cors = require('cors');
 const db = require('./db'); // SQLite
+const bcrypt = require('bcrypt');
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Regisztráció
-app.post('/api/register', (req, res) => {
-  const { username, email, password, role } = req.body;
-  const bcrypt = require('bcrypt');
+// --------------------
+// REGISZTRÁCIÓ
+// --------------------
+app.post('/api/register', async (req, res) => {
+  const { username, email, password, role = 'employer', location = '', phone = '', hasJob = false } = req.body;
 
-  bcrypt.hash(password, 10, (err, hash) => {
-    if (err) return res.status(500).json({ error: 'Hiba' });
+  try {
+    // Jelszó hash-elése
+    const hash = await bcrypt.hash(password, 10);
 
     db.run(
-      `INSERT INTO users (username, email, password_hash, role) VALUES (?, ?, ?, ?)`,
-      [username, email, hash, role],
-      function(err) {
+      `INSERT INTO users (username, email, password_hash, role, location, phone, hasJob) 
+       VALUES (?, ?, ?, ?, ?, ?, ?)`,
+      [username, email, hash, role, location, phone, hasJob],
+      function (err) {
         if (err) {
-          return res.status(400).json({ error: 'Már létezik!' });
+          console.error('Hiba regisztráció során:', err); // <--- logoljuk a hibát
+          return res.status(400).json({ error: 'Már létezik ez az email!' });
         }
-        res.json({ message: 'Sikeres regisztráció!', userId: this.lastID });
+        console.log('Új felhasználó ID:', this.lastID); // <--- logoljuk a sikeres insertet
+        res.status(201).json({ message: 'Sikeres regisztráció!', userId: this.lastID });
       }
     );
-  });
+  } catch (err) {
+    console.error('Hiba regisztráció során:', err);
+    res.status(500).json({ error: 'Hiba történt' });
+  }
 });
 
-// JobSearch
+// --------------------
+// JOB SEARCH
+// --------------------
 app.get('/api/jobs/search', (req, res) => {
   const q = (req.query.q || '').toString().trim();
   const location = (req.query.location || '').toString().trim();
@@ -59,22 +70,32 @@ app.get('/api/jobs/search', (req, res) => {
   });
 });
 
-//Login
+// --------------------
+// LOGIN
+// --------------------
 app.post('/api/login', async (req, res) => {
   const { email, password } = req.body;
 
   try {
+    // Felhasználó lekérdezése
     const user = await new Promise((resolve, reject) =>
-      db.get('SELECT * FROM users WHERE email = ? AND password_hash = ?', [email, password], (err, row) => {
+      db.get('SELECT * FROM users WHERE email = ?', [email], (err, row) => {
         if (err) reject(err);
         else resolve(row);
       })
     );
 
     if (!user) {
-      return res.json({ success: false });
+      return res.json({ success: false, message: 'Nincs ilyen felhasználó' });
     }
 
+    // Jelszó ellenőrzés
+    const validPassword = await bcrypt.compare(password, user.password_hash);
+    if (!validPassword) {
+      return res.json({ success: false, message: 'Hibás jelszó' });
+    }
+
+    // Ellenőrzés, hogy van-e céghez tartozó állás
     const job = await new Promise((resolve, reject) =>
       db.get('SELECT 1 FROM jobs WHERE email = ?', [email], (err, row) => {
         if (err) reject(err);
@@ -89,14 +110,15 @@ app.post('/api/login', async (req, res) => {
       user,
       isCompanyUser
     });
-
   } catch (err) {
     console.error(err);
     res.status(500).json({ success: false });
   }
 });
 
-//Get-job
+// --------------------
+// SAJÁT ÁLLÁSOK LEKÉRDEZÉSE
+// --------------------
 app.get('/api/my-jobs/:employerId', (req, res) => {
   const employerId = req.params.employerId;
 
@@ -119,6 +141,9 @@ app.get('/api/my-jobs/:employerId', (req, res) => {
   );
 });
 
+// --------------------
+// SERVER INDÍTÁS
+// --------------------
 app.listen(3000, () => {
   console.log('Backend fut: http://localhost:3000');
   console.log('Adatbázis: jobportal1.db (fájl a backend mappában)');
