@@ -29,4 +29,32 @@
   <div class="job-actions">
     <button class="new_job" (click)="createNewJob()">+ Új hirdetés</button>
   </div>
+  <div class="modal-backdrop" *ngIf="showNewJobModal">
+  <div class="modal-box">
+
+    <h2>Új álláshirdetés</h2>
+
+    <label>Cím:</label>
+    <input type="text" [(ngModel)]="newJob.title">
+
+    <label>Cég:</label>
+    <input type="text" [(ngModel)]="newJob.company">
+
+    <label>Helyszín:</label>
+    <input type="text" [(ngModel)]="newJob.location">
+
+    <label>Bér:</label>
+    <input type="text" [(ngModel)]="newJob.salary">
+
+    <label>Leírás:</label>
+    <textarea rows="4" [(ngModel)]="newJob.description"></textarea>
+
+    <div class="modal-actions">
+      <button class="save-btn" (click)="saveNewJob()">Mentés</button>
+      <button class="cancel-btn" (click)="closeModal()">Mégse</button>
+    </div>
+
+  </div>
+</div>
+
 </div>

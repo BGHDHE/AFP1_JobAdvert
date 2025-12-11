@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth';
@@ -7,7 +8,7 @@ import { AuthService } from '../../services/auth';
 @Component({
   selector: 'app-company-main',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,FormsModule],
   templateUrl: './company-main.html',
   styleUrls: ['./company-main.css']
 })
@@ -15,6 +16,16 @@ export class CompanyMain implements OnInit {
   jobs: any[] = [];
   loading = false;
   error: string = '';
+
+  showNewJobModal = false;
+
+newJob = {
+  title: '',
+  company: '',
+  location: '',
+  salary: '',
+  description: ''
+};
 
   constructor(
     private http: HttpClient,
@@ -49,9 +60,34 @@ export class CompanyMain implements OnInit {
     });
   }
 
+  
+
+
   createNewJob(): void {
-    alert('coming soon');
+    this.showNewJobModal = true;
   }
+
+  saveNewJob(): void {
+  //TBD
+  console.log("Új állás mentve:", this.newJob);
+
+  this.showNewJobModal = false;
+
+  this.newJob = {
+    title: '',
+    company: '',
+    location: '',
+    salary: '',
+    description: ''
+  };
+
+  this.loadJobs();
+}
+
+closeModal(): void {
+  this.showNewJobModal = false;
+}
+
 
   editJob(jobId: number): void {
     alert('coming soon');
