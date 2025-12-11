@@ -23,6 +23,7 @@ newJob = {
   title: '',
   company: '',
   location: '',
+  email: '',
   salary: '',
   description: ''
 };
@@ -77,6 +78,7 @@ newJob = {
     title: '',
     company: '',
     location: '',
+    email: '',
     salary: '',
     description: ''
   };
