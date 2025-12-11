@@ -76,6 +76,7 @@ loadJobs(): void {
     this.currentJobId = null;
     this.resetForm();
     this.showForm = true;
+    this.router.navigate(['/company-new-job']);
   }
 
   editJob(jobId: number): void {

@@ -68,6 +68,11 @@ async function seed() {
       process.exit(0);
     }
 
+    const existingEmployee = await getUserByEmail('employee@example.com');
+    if (!existingEmployee) {
+      await insertUser('employee', 'employee@example.com', 'asd', 'employee');
+      console.log('Employee felhasználó létrehozva.');
+    }
 
     await insertJobWithAdmin({
       title: 'Frontend Developer (Angular)',

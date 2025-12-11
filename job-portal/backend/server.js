@@ -19,7 +19,7 @@ app.post('/api/register', async (req, res) => {
     const hash = await bcrypt.hash(password, 10);
 
     db.run(
-      `INSERT INTO users (username, email, password_hash, role, location, phone, hasJob) 
+      `INSERT INTO users (username, email, password_hash, role, location, phone, hasJob)
        VALUES (?, ?, ?, ?, ?, ?, ?)`,
       [username, email, hash, role, location, phone, hasJob],
       function (err) {
@@ -200,6 +200,34 @@ app.delete('/api/jobs/:id', authenticateToken, (req, res) => {
   });
 });
 
+
+// --------------------
+// ÚJ MUNKAHIRDETÉS LÉTREHOZÁSA
+// --------------------
+app.post('/api/jobs', (req, res) => {
+  const { title, description, company, location, email, salary, employer_id } = req.body;
+
+  if (!title || !description || !company || !location || !email || !salary || !employer_id) {
+    return res.status(400).json({ error: 'Hiányzó adatok' });
+  }
+
+  db.run(
+    `INSERT INTO jobs (title, description, company, location, email, salary, employer_id)
+     VALUES (?, ?, ?, ?, ?, ?, ?)`,
+    [title, description, company, location, email, salary, employer_id],
+    function (err) {
+      if (err) {
+        console.error('Hiba a hirdetés létrehozásakor:', err);
+        return res.status(500).json({ error: 'Hiba a hirdetés mentésekor' });
+      }
+      res.status(201).json({
+        success: true,
+        message: 'Hirdetés sikeresen létrehozva!',
+        jobId: this.lastID
+      });
+    }
+  );
+});
 
 // --------------------
 // SERVER INDÍTÁS
