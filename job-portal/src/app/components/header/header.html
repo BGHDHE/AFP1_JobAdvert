@@ -4,15 +4,41 @@
       <button routerLink="">JobPortal</button>
     </div>
 
-    <div class="auth-buttons"> 
-      <a *ngIf="isLoggedIn && role === 'employee'" routerLink="/felhasznaloprofil" class="btn-login">{{ user?.username}}'s profile</a>
-      <a *ngIf="isLoggedIn && role === 'employer'" routerLink="/company-main" class="btn-login">{{ user?.username}}'s profile</a>
-      <a *ngIf="isLoggedIn" routerLink="" (click)="logout()" class="btn-register">Logout</a>
+    <div class="auth-buttons">
+   
+      <ng-container *ngIf="isLoggedIn">
+     
+        <a *ngIf="role === 'employee'" 
+           routerLink="/felhasznaloprofil" 
+           class="btn-login">
+          {{ user?.username }} profilja
+        </a>
       
-      <ng-container *ngIf="!isLoggedIn">
-        <a routerLink="/login" class="btn-login">Login</a>
-        <a routerLink="/register" class="btn-register">Register</a>
+        <ng-container *ngIf="role === 'employer'">
+          <a routerLink="/company-main" 
+             class="btn-login">
+             Saját hirdetéseim
+          </a>
+          <a routerLink="/felhasznaloprofil" 
+             class="btn-login" 
+             style="margin-left: 10px;">
+             {{ user?.username }} fiókja
+          </a>
+        </ng-container>
+       
+        <a (click)="logout()" 
+           class="btn-register" 
+           style="cursor: pointer;">
+          Kijelentkezés
+        </a>
+
       </ng-container>
+   
+      <ng-container *ngIf="!isLoggedIn">
+        <a routerLink="/bejelentkezes" class="btn-login">Bejelentkezés</a>
+        <a routerLink="/register" class="btn-register">Regisztráció</a>
+      </ng-container>
+
     </div>
   </div>
 </header>
