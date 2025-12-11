@@ -17,6 +17,7 @@ interface Job {
 @Component({
   selector: 'app-company-main',
   standalone: true,
+  imports: [CommonModule,FormsModule],
   imports: [CommonModule, FormsModule],
   templateUrl: './company-main.html',
   styleUrls: ['./company-main.css']
@@ -26,6 +27,16 @@ export class CompanyMain implements OnInit {
   loading = false;
   error: string = '';
 
+  showNewJobModal = false;
+
+newJob = {
+  title: '',
+  company: '',
+  location: '',
+  email: '',
+  salary: '',
+  description: ''
+};
   showForm = false;
   isEdit = false;
   currentJobId: number | null = null;
@@ -71,13 +82,40 @@ loadJobs(): void {
     });
   }
 
+  
+
+
   createNewJob(): void {
+    this.showNewJobModal = true;
     this.isEdit = false;
     this.currentJobId = null;
     this.resetForm();
     this.showForm = true;
     this.router.navigate(['/company-new-job']);
   }
+
+  saveNewJob(): void {
+  //TBD
+  console.log("Új állás mentve:", this.newJob);
+
+  this.showNewJobModal = false;
+
+  this.newJob = {
+    title: '',
+    company: '',
+    location: '',
+    email: '',
+    salary: '',
+    description: ''
+  };
+
+  this.loadJobs();
+}
+
+closeModal(): void {
+  this.showNewJobModal = false;
+}
+
 
   editJob(jobId: number): void {
     const job = this.jobs.find(j => j.id === jobId);
