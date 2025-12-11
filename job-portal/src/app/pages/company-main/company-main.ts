@@ -50,7 +50,7 @@ export class CompanyMain implements OnInit {
   }
 
   createNewJob(): void {
-    alert('coming soon');
+    this.router.navigate(['/company-new-job']);
   }
 
   editJob(jobId: number): void {

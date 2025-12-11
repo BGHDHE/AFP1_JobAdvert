@@ -1,0 +1,81 @@
+<div class="new-job-container">
+  <h1>Új munkahirdetés létrehozása</h1>
+
+  <form (ngSubmit)="submitJob()" [formGroup]="jobForm">
+    <div class="form-group">
+      <label for="title">Pozíció neve:</label>
+      <input
+        type="text"
+        id="title"
+        formControlName="title"
+        placeholder="pl. Frontend Developer"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="company">Cég neve:</label>
+      <input
+        type="text"
+        id="company"
+        formControlName="company"
+        placeholder="pl. TechCorp Ltd."
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="location">Helyszín:</label>
+      <input
+        type="text"
+        id="location"
+        formControlName="location"
+        placeholder="pl. Budapest"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="salary">Bér:</label>
+      <input
+        type="text"
+        id="salary"
+        formControlName="salary"
+        placeholder="pl. 500000 HUF"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input
+        type="email"
+        id="email"
+        formControlName="email"
+        placeholder="pl. contact@company.com"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="description">Leírás:</label>
+      <textarea
+        id="description"
+        formControlName="description"
+        placeholder="Pozíció leírása, követelmények, stb."
+        rows="6"
+        required
+      ></textarea>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn-submit" [disabled]="!jobForm.valid || loading">
+        {{ loading ? 'Feldolgozás...' : 'Hirdetés közzététele' }}
+      </button>
+      <button type="button" class="btn-cancel" (click)="goBack()">Mégse</button>
+    </div>
+
+    <div *ngIf="error" class="error-message">{{ error }}</div>
+    <div *ngIf="success" class="success-message">{{ success }}</div>
+  </form>
+</div>
