@@ -140,6 +140,66 @@ app.get('/api/my-jobs/:employerId', (req, res) => {
     }
   );
 });
+const authenticateToken = (req, res, next) => {
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1]; // Bearer TOKEN
+
+  if (!token) return res.status(401).json({ error: 'Hiányzó token' });
+
+  jwt.verify(token, JWT_SECRET, (err, user) => {
+    if (err) return res.status(403).json({ error: 'Érvénytelen token' });
+    req.user = user; // { id: 5, email: ... }
+    next();
+  });
+};
+
+app.get('/api/my-jobs', authenticateToken, (req, res) => {
+  const sql = `SELECT * FROM jobs WHERE employer_id = ? ORDER BY id DESC`;
+  db.all(sql, [req.user.id], (err, rows) => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json(rows);
+  });
+});
+
+app.post('/api/jobs', authenticateToken, (req, res) => {
+  const { title, description, company, location, salary } = req.body;
+
+  if (!title || !company) {
+    return res.status(400).json({ error: 'A cím és a cég neve kötelező' });
+  }
+
+  const sql = `INSERT INTO jobs (title, description, company, location, salary, employer_id)
+               VALUES (?, ?, ?, ?, ?, ?)`;
+  db.run(sql, [title, description || null, company, location || null, salary || null, req.user.id], function(err) {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json({ id: this.lastID, message: 'Állás sikeresen létrehozva' });
+  });
+});
+
+app.put('/api/jobs/:id', authenticateToken, (req, res) => {
+  const { title, description, company, location, salary } = req.body;
+  const jobId = req.params.id;
+
+  const sql = `UPDATE jobs SET title = ?, description = ?, company = ?, location = ?, salary = ?
+               WHERE id = ? AND employer_id = ?`;
+  db.run(sql, [title, description || null, company, location || null, salary || null, jobId, req.user.id], function(err) {
+    if (err) return res.status(500).json({ error: err.message });
+    if (this.changes === 0) return res.status(404).json({ error: 'Nem található vagy nincs jogosultság' });
+    res.json({ message: 'Állás sikeresen frissítve' });
+  });
+});
+
+app.delete('/api/jobs/:id', authenticateToken, (req, res) => {
+  const jobId = req.params.id;
+
+  const sql = `DELETE FROM jobs WHERE id = ? AND employer_id = ?`;
+  db.run(sql, [jobId, req.user.id], function(err) {
+    if (err) return res.status(500).json({ error: err.message });
+    if (this.changes === 0) return res.status(404).json({ error: 'Nem található vagy nincs jogosultság' });
+    res.json({ message: 'Állás törölve' });
+  });
+});
+
 
 // --------------------
 // SERVER INDÍTÁS
