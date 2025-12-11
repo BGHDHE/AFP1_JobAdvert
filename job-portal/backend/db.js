@@ -20,6 +20,9 @@ db.serialize(() => {
       email TEXT NOT NULL UNIQUE,
       password_hash TEXT NOT NULL,
       role TEXT NOT NULL DEFAULT 'employer',
+      location TEXT NOT NULL,
+      phone TEXT,
+      hasJob BOOLEAN DEFAULT 0,
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP
     )
   `);

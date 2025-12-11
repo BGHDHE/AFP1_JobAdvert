@@ -1,7 +1,9 @@
 <div class="hero-section">
 
-  <div *ngIf="!loading && jobs.length === 0 && !error" class="job-container">
-    <p>Nincs még hirdetésed. Kattints az alábbi gombra az első hirdetés létrehozásához!</p>
+  <div *ngIf="!loading && jobs.length === 0 && !error" class="job-container" style="text-align: center; padding: 60px 20px;">
+    <p style="font-size: 1.4rem; color: #e2e8f0;">
+      Nincs még hirdetésed. Kattints az alábbi gombra az első hirdetés létrehozásához!
+    </p>
   </div>
 
   <div *ngIf="!loading && jobs.length > 0" class="hero-content">
@@ -10,12 +12,15 @@
         <h2 class="hero-title">{{ job.title }}</h2>
         
         <p><strong>Cég:</strong> {{ job.company }}</p>
-        <p><strong>Helyszín:</strong> {{ job.location }}</p>
-        <p><strong>Bér:</strong> {{ job.salary }}</p>
+        <p><strong>Helyszín:</strong> {{ job.location || 'Nem megadva' }}</p>
+        <p><strong>Bér:</strong> {{ job.salary || 'Versenyfizetés' }}</p>
         
-        <p>
+        <p *ngIf="job.description">
           <strong>Leírás:</strong><br>
           {{ job.description }}
+        </p>
+        <p *ngIf="!job.description" style="color: #888; font-style: italic;">
+          Nincs leírás
         </p>
       </div>
 
@@ -26,7 +31,7 @@
     </div>
   </div>
 
-  <div class="job-actions">
+  <div class="job-actions" style="justify-content: center; margin-top: 40px;">
     <button class="new_job" (click)="createNewJob()">+ Új hirdetés</button>
   </div>
   <div class="modal-backdrop" *ngIf="showNewJobModal">
@@ -60,4 +65,55 @@
   </div>
 </div>
 
+
+  <div *ngIf="error" style="text-align: center; color: #ef4444; margin: 40px;">
+    {{ error }}
+  </div>
+
+  <div *ngIf="loading" style="text-align: center; padding: 80px; color: #94a3b8;">
+    Betöltés...
+  </div>
+</div>
+
+<div class="form-overlay" *ngIf="showForm" (click)="cancelForm()">
+  <div class="form-container" (click)="$event.stopPropagation()">
+    <h3 style="margin-top:0; text-align:center;">
+      {{ isEdit ? 'Álláshirdetés szerkesztése' : 'Új álláshirdetés feladása' }}
+    </h3>
+
+    <input 
+      [(ngModel)]="title" 
+      placeholder="Állás megnevezése *" 
+      required 
+    />
+
+    <input 
+      [(ngModel)]="company" 
+      placeholder="Cég neve *" 
+      required 
+    />
+
+    <input 
+      [(ngModel)]="location" 
+      placeholder="Helyszín (pl. Budapest, távoli munkavégzés)" 
+    />
+
+    <input 
+      [(ngModel)]="salary" 
+      placeholder="Fizetés (pl. 800.000 – 1.200.000 Ft)" 
+    />
+
+    <textarea 
+      [(ngModel)]="description" 
+      placeholder="Részletes leírás, elvárások, juttatások..." 
+      rows="8">
+    </textarea>
+
+    <div class="form-buttons">
+      <button class="new_job" (click)="saveJob()">
+        {{ isEdit ? 'Frissítés' : 'Feladás' }}
+      </button>
+      <button class="delete_all" (click)="cancelForm()">Mégse</button>
+    </div>
+  </div>
 </div>
