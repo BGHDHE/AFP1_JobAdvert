@@ -18,7 +18,6 @@ interface Job {
   selector: 'app-company-main',
   standalone: true,
   imports: [CommonModule,FormsModule],
-  imports: [CommonModule, FormsModule],
   templateUrl: './company-main.html',
   styleUrls: ['./company-main.css']
 })
