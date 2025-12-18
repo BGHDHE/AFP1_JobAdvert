@@ -62,7 +62,10 @@ export class CompnayNewJob implements OnInit {
       employer_id: user.id
     };
 
-    this.http.post('http://localhost:3000/api/jobs', jobData).subscribe({
+    const token = localStorage.getItem('token') || '';
+    const headers = { Authorization: `Bearer ${token}` };
+
+    this.http.post('http://localhost:3000/api/jobs', jobData, { headers }).subscribe({
       next: (response: any) => {
         this.loading = false;
         this.success = 'Hirdetés sikeresen közzétéve!';

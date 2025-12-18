@@ -3,6 +3,10 @@ const express = require('express');
 const cors = require('cors');
 const db = require('./db'); // SQLite
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+
+const JWT_SECRET = 'your-secret-key-change-in-production';
+const TOKEN_EXPIRY = '24h';
 
 const app = express();
 app.use(cors());
@@ -97,18 +101,26 @@ app.post('/api/login', async (req, res) => {
 
     // Ellenőrzés, hogy van-e céghez tartozó állás
     const job = await new Promise((resolve, reject) =>
-      db.get('SELECT 1 FROM jobs WHERE email = ?', [email], (err, row) => {
+      db.get('SELECT email, location FROM jobs WHERE employer_id = ?', [user.id], (err, row) => {
         if (err) reject(err);
         else resolve(row);
       })
     );
 
     const isCompanyUser = !!job;
+    const companyEmail = job?.email || null;
+    const companyLocation = job?.location || null;
+
+    // Generate JWT token
+    const token = jwt.sign({ id: user.id, email: user.email }, JWT_SECRET, { expiresIn: TOKEN_EXPIRY });
 
     res.json({
       success: true,
       user,
-      isCompanyUser
+      token,
+      isCompanyUser,
+      companyEmail,
+      companyLocation
     });
   } catch (err) {
     console.error(err);
@@ -147,7 +159,12 @@ const authenticateToken = (req, res, next) => {
   if (!token) return res.status(401).json({ error: 'Hiányzó token' });
 
   jwt.verify(token, JWT_SECRET, (err, user) => {
-    if (err) return res.status(403).json({ error: 'Érvénytelen token' });
+    if (err) {
+      if (err.name === 'TokenExpiredError') {
+        return res.status(401).json({ error: 'Token lejárt, kérlek jelentkezz be újra' });
+      }
+      return res.status(403).json({ error: 'Érvénytelen token' });
+    }
     req.user = user; // { id: 5, email: ... }
     next();
   });
@@ -162,16 +179,19 @@ app.get('/api/my-jobs', authenticateToken, (req, res) => {
 });
 
 app.post('/api/jobs', authenticateToken, (req, res) => {
-  const { title, description, company, location, salary } = req.body;
+  const { title, description, company, location, salary, email } = req.body;
 
   if (!title || !company) {
     return res.status(400).json({ error: 'A cím és a cég neve kötelező' });
   }
 
-  const sql = `INSERT INTO jobs (title, description, company, location, salary, employer_id)
-               VALUES (?, ?, ?, ?, ?, ?)`;
-  db.run(sql, [title, description || null, company, location || null, salary || null, req.user.id], function(err) {
-    if (err) return res.status(500).json({ error: err.message });
+  const sql = `INSERT INTO jobs (title, description, company, location, salary, email, employer_id)
+               VALUES (?, ?, ?, ?, ?, ?, ?)`;
+  db.run(sql, [title, description || null, company, location || null, salary || null, email || null, req.user.id], function(err) {
+    if (err) {
+      console.error('Job insert error:', err);
+      return res.status(500).json({ error: err.message });
+    }
     res.json({ id: this.lastID, message: 'Állás sikeresen létrehozva' });
   });
 });

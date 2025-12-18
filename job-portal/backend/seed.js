@@ -1,14 +1,14 @@
 const db = require('./db');
 const bcrypt = require('bcrypt');
 
-async function insertUser(username, email, password, role = 'employer') {
+async function insertUser(username, email, password, role = 'employer', location = 'Budapest', phone = '') {
   const password_hash = await bcrypt.hash(password, 10);
 
   return new Promise((res, rej) => {
     db.run(
-      `INSERT INTO users (username, email, password_hash, role)
-       VALUES (?, ?, ?, ?)`,
-      [username, email, password_hash, role],
+      `INSERT INTO users (username, email, password_hash, role, location, phone)
+       VALUES (?, ?, ?, ?, ?, ?)`,
+      [username, email, password_hash, role, location, phone],
       function (err) {
         if (err) return rej(err);
         res(this.lastID);
@@ -59,20 +59,33 @@ async function insertJobWithAdmin({ title, description, company, location, email
 
 async function seed() {
   try {
-    const row = await new Promise((res, rej) =>
+    const jobRow = await new Promise((res, rej) =>
       db.get(`SELECT COUNT(*) AS cnt FROM jobs`, (err, r) => (err ? rej(err) : res(r)))
     );
 
-    if (row && row.cnt > 0) {
+    const userRow = await new Promise((res, rej) =>
+      db.get(`SELECT COUNT(*) AS cnt FROM users`, (err, r) => (err ? rej(err) : res(r)))
+    );
+
+    if (jobRow && jobRow.cnt > 0) {
       console.log('Seed kihagyva: a jobs tábla nem üres.');
       process.exit(0);
     }
 
-    const existingEmployee = await getUserByEmail('employee@example.com');
-    if (!existingEmployee) {
-      await insertUser('employee', 'employee@example.com', 'asd', 'employee');
-      console.log('Employee felhasználó létrehozva.');
+    // Insert employees if not already present
+    if (!userRow || userRow.cnt === 0) {
+      console.log('Alkalmazottak hozzáadása...');
+
+      await insertUser('anna.kovacs', 'anna.kovacs@email.com', 'asd', 'employee', 'Budapest', '+36309876543');
+      await insertUser('peter.szabo', 'peter.szabo@email.com', 'asd', 'employee', 'Debrecen', '+36309876544');
+      await insertUser('maria.nagy', 'maria.nagy@email.com', 'asd', 'employee', 'Szeged', '+36309876545');
+      await insertUser('jozsef.toth', 'jozsef.toth@email.com', 'asd', 'employee', 'Pécs', '+36309876546');
+      await insertUser('eva.molnar', 'eva.molnar@email.com', 'asd', 'employee', 'Miskolc', '+36309876547');
+
+      console.log('Alkalmazottak felvétele kész.');
     }
+
+
 
     await insertJobWithAdmin({
       title: 'Frontend Developer (Angular)',
