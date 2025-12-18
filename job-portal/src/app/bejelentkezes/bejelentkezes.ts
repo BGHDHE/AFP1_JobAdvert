@@ -38,10 +38,11 @@ export class BejelentkezesComponent {
       password: this.password
     }).subscribe({
       next: (res: any) => {
-        if (res.success && res.user) {
-          localStorage.setItem('token', res.token || '');
-          localStorage.setItem('user', JSON.stringify(res.user));
-          this.authService.setUser(res.user);
+        if (res.success && res.user && res.token) {
+          const userData = { ...res.user, token: res.token };
+          localStorage.setItem('token', res.token);
+          localStorage.setItem('user', JSON.stringify(userData));
+          this.authService.setUser(userData);
           this.message = 'Sikeres bejelentkezés!';
           setTimeout(() => this.router.navigate(['/']), 1500);
         } else {

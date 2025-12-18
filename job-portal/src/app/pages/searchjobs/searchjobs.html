@@ -16,7 +16,13 @@
       <p><strong>Location:</strong> {{ job.location }}</p>
       <p><strong>Salary:</strong> {{ job.salary || 'Nem adott meg' }}</p>
       <p>{{ job.description }}</p>
-      <button class="apply-btn" (click)="onApply(job)">Jelentkezés</button>
+      <button
+        class="apply-btn"
+        (click)="onApply(job)"
+        [disabled]="hasApplied(job.id)"
+      >
+        {{ hasApplied(job.id) ? 'Már jelentkeztél' : 'Jelentkezés' }}
+      </button>
     </div>
   </div>
 </div>
