@@ -11,7 +11,7 @@
         <ng-container *ngIf="role === 'employee'">
         <a routerLink="/applicant-jobs"
            class="btn-login">
-          {{ user?.username }} - Állások
+          {{ user?.username }} - Jelentkezéseim
         </a>
 
         <a routerLink="/felhasznaloprofil"
@@ -25,6 +25,12 @@
           <a routerLink="/company-main"
              class="btn-login">
              Saját hirdetéseim
+          </a>
+
+          <a routerLink="/company-applicants"
+             class="btn-login"
+             style="margin-left: 10px;">
+             Jelentkezők
           </a>
         </ng-container>
 
