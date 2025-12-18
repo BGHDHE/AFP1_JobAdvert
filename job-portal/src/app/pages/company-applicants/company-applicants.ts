@@ -1,8 +1,11 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { RouterModule } from '@angular/router';
+
 
 @Component({
   selector: 'app-company-applicants',
-  imports: [],
+  imports: [CommonModule, RouterModule],
   templateUrl: './company-applicants.html',
   styleUrl: './company-applicants.css',
 })
