@@ -42,6 +42,20 @@ db.serialize(() => {
       FOREIGN KEY (employer_id) REFERENCES users (id) ON DELETE CASCADE
     )
   `);
+
+  // APPLICATIONS TABLE
+  db.run(`
+    CREATE TABLE IF NOT EXISTS applications (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      job_id INTEGER NOT NULL,
+      applicant_id INTEGER NOT NULL,
+      status TEXT DEFAULT 'pending',
+      applied_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      FOREIGN KEY (job_id) REFERENCES jobs (id) ON DELETE CASCADE,
+      FOREIGN KEY (applicant_id) REFERENCES users (id) ON DELETE CASCADE,
+      UNIQUE(job_id, applicant_id)
+    )
+  `);
 });
 
 module.exports = db;

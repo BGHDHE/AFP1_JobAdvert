@@ -13,6 +13,27 @@ app.use(cors());
 app.use(express.json());
 
 // --------------------
+// AUTHENTICATION MIDDLEWARE
+// --------------------
+const authenticateToken = (req, res, next) => {
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1]; // Bearer TOKEN
+
+  if (!token) return res.status(401).json({ error: 'Hiányzó token' });
+
+  jwt.verify(token, JWT_SECRET, (err, user) => {
+    if (err) {
+      if (err.name === 'TokenExpiredError') {
+        return res.status(401).json({ error: 'Token lejárt, kérlek jelentkezz be újra' });
+      }
+      return res.status(403).json({ error: 'Érvénytelen token' });
+    }
+    req.user = user; // { id: 5, email: ... }
+    next();
+  });
+};
+
+// --------------------
 // REGISZTRÁCIÓ
 // --------------------
 app.post('/api/register', async (req, res) => {
@@ -81,7 +102,6 @@ app.post('/api/login', async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    // Felhasználó lekérdezése
     const user = await new Promise((resolve, reject) =>
       db.get('SELECT * FROM users WHERE email = ?', [email], (err, row) => {
         if (err) reject(err);
@@ -93,13 +113,11 @@ app.post('/api/login', async (req, res) => {
       return res.json({ success: false, message: 'Nincs ilyen felhasználó' });
     }
 
-    // Jelszó ellenőrzés
     const validPassword = await bcrypt.compare(password, user.password_hash);
     if (!validPassword) {
       return res.json({ success: false, message: 'Hibás jelszó' });
     }
 
-    // Ellenőrzés, hogy van-e céghez tartozó állás
     const job = await new Promise((resolve, reject) =>
       db.get('SELECT email, location FROM jobs WHERE employer_id = ?', [user.id], (err, row) => {
         if (err) reject(err);
@@ -111,7 +129,6 @@ app.post('/api/login', async (req, res) => {
     const companyEmail = job?.email || null;
     const companyLocation = job?.location || null;
 
-    // Generate JWT token
     const token = jwt.sign({ id: user.id, email: user.email }, JWT_SECRET, { expiresIn: TOKEN_EXPIRY });
 
     res.json({
@@ -152,23 +169,21 @@ app.get('/api/my-jobs/:employerId', (req, res) => {
     }
   );
 });
-const authenticateToken = (req, res, next) => {
-  const authHeader = req.headers['authorization'];
-  const token = authHeader && authHeader.split(' ')[1]; // Bearer TOKEN
-
-  if (!token) return res.status(401).json({ error: 'Hiányzó token' });
-
-  jwt.verify(token, JWT_SECRET, (err, user) => {
+// --------------------
+// FELHASZNÁLÓI PROFIL LEKÉRDEZÉSE
+// --------------------
+app.get('/api/profile', authenticateToken, (req, res) => {
+  const sql = `SELECT id, username, email, role, location, phone, hasJob, created_at FROM users WHERE id = ?`;
+  db.get(sql, [req.user.id], (err, row) => {
     if (err) {
-      if (err.name === 'TokenExpiredError') {
-        return res.status(401).json({ error: 'Token lejárt, kérlek jelentkezz be újra' });
-      }
-      return res.status(403).json({ error: 'Érvénytelen token' });
+      return res.status(500).json({ success: false, error: err.message });
     }
-    req.user = user; // { id: 5, email: ... }
-    next();
+    if (!row) {
+      return res.status(404).json({ success: false, error: 'Felhasználó nem található' });
+    }
+    res.json({ success: true, user: row });
   });
-};
+});
 
 app.get('/api/my-jobs', authenticateToken, (req, res) => {
   const sql = `SELECT * FROM jobs WHERE employer_id = ? ORDER BY id DESC`;
@@ -247,6 +262,177 @@ app.post('/api/jobs', (req, res) => {
       });
     }
   );
+});
+
+// --------------------
+// JELENTKEZÉS STÁTUSZÁNAK FRISSÍTÉSE
+// --------------------
+app.put('/api/application/:applicationId', authenticateToken, (req, res) => {
+  const { status } = req.body;
+  const applicationId = req.params.applicationId;
+
+  if (!status || !['pending', 'accepted', 'rejected'].includes(status)) {
+    return res.status(400).json({ success: false, error: 'Érvénytelen státusz' });
+  }
+
+  const verifySql = `
+    SELECT a.id
+    FROM applications a
+    JOIN jobs j ON a.job_id = j.id
+    WHERE a.id = ? AND j.employer_id = ?
+  `;
+
+  db.get(verifySql, [applicationId, req.user.id], (err, row) => {
+    if (err) {
+      return res.status(500).json({ success: false, error: err.message });
+    }
+    if (!row) {
+      return res.status(403).json({ success: false, error: 'Nincs jogosultság' });
+    }
+
+    const updateSql = `UPDATE applications SET status = ? WHERE id = ?`;
+    db.run(updateSql, [status, applicationId], function(err) {
+      if (err) {
+        return res.status(500).json({ success: false, error: err.message });
+      }
+      res.json({ success: true, message: 'Státusz frissítve' });
+    });
+  });
+});
+
+// --------------------
+// JELENTKEZÉS ELKÜLDÉSE
+// --------------------
+app.post('/api/apply', authenticateToken, (req, res) => {
+  const { job_id } = req.body;
+  const applicant_id = req.user.id;
+
+  if (!job_id) {
+    return res.status(400).json({ success: false, error: 'Job ID hiányzik' });
+  }
+
+  db.run(
+    `INSERT INTO applications (job_id, applicant_id, status)
+     VALUES (?, ?, 'pending')`,
+    [job_id, applicant_id],
+    function (err) {
+      if (err) {
+        if (err.message.includes('UNIQUE')) {
+          return res.status(400).json({ success: false, error: 'Már jelentkeztél erre az állásra' });
+        }
+        console.error('Hiba a jelentkezéskor:', err);
+        return res.status(500).json({ success: false, error: err.message });
+      }
+      res.json({ success: true, message: 'Sikeresen jelentkeztél az állásra!' });
+    }
+  );
+});
+
+// --------------------
+// FELHASZNÁLÓ ALKALMAZÁSAINAK LEKÉRDEZÉSE
+// --------------------
+app.get('/api/my-applications', authenticateToken, (req, res) => {
+  const sql = `
+    SELECT
+      a.id,
+      a.status,
+      a.applied_at,
+      j.id as job_id,
+      j.title,
+      j.company,
+      j.location,
+      j.salary
+    FROM applications a
+    JOIN jobs j ON a.job_id = j.id
+    WHERE a.applicant_id = ?
+    ORDER BY a.applied_at DESC
+  `;
+
+  db.all(sql, [req.user.id], (err, rows) => {
+    if (err) {
+      return res.status(500).json({ success: false, error: err.message });
+    }
+    res.json({ success: true, applications: rows || [] });
+  });
+});
+
+// --------------------
+// ÁLLÁS HIRDETÉSRE JELENTKEZŐK LEKÉRDEZÉSE
+// --------------------
+app.get('/api/job/:jobId/applicants', authenticateToken, (req, res) => {
+  const jobId = req.params.jobId;
+
+  const sql = `
+    SELECT
+      a.id,
+      a.status,
+      a.applied_at,
+      u.id as user_id,
+      u.username,
+      u.email,
+      u.location,
+      u.phone
+    FROM applications a
+    JOIN users u ON a.applicant_id = u.id
+    WHERE a.job_id = ?
+    ORDER BY a.applied_at DESC
+  `;
+
+  db.all(sql, [jobId], (err, rows) => {
+    if (err) {
+      return res.status(500).json({ success: false, error: err.message });
+    }
+    res.json({ success: true, applicants: rows || [] });
+  });
+});
+
+// --------------------
+// ÖSSZES JELENTKEZÉS A FELHASZNÁLÓ HIRDETÉSEIRE
+// --------------------
+app.get('/api/my-job-applicants', authenticateToken, (req, res) => {
+  const sql = `
+    SELECT
+      a.id,
+      a.status,
+      a.applied_at,
+      j.id as job_id,
+      j.title,
+      j.company,
+      u.id as user_id,
+      u.username,
+      u.email,
+      u.location,
+      u.phone
+    FROM applications a
+    JOIN jobs j ON a.job_id = j.id
+    JOIN users u ON a.applicant_id = u.id
+    WHERE j.employer_id = ?
+    ORDER BY a.applied_at DESC
+  `;
+
+  db.all(sql, [req.user.id], (err, rows) => {
+    if (err) {
+      return res.status(500).json({ success: false, error: err.message });
+    }
+    res.json({ success: true, applicants: rows || [] });
+  });
+});
+
+// --------------------
+// JELENTKEZÉS ELLENŐRZÉSE
+// --------------------
+app.get('/api/check-application/:jobId', authenticateToken, (req, res) => {
+  const jobId = req.params.jobId;
+  const applicantId = req.user.id;
+
+  const sql = `SELECT id FROM applications WHERE job_id = ? AND applicant_id = ?`;
+
+  db.get(sql, [jobId, applicantId], (err, row) => {
+    if (err) {
+      return res.status(500).json({ success: false, error: err.message });
+    }
+    res.json({ success: true, hasApplied: !!row });
+  });
 });
 
 // --------------------
