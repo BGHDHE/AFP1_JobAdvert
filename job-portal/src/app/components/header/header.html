@@ -5,35 +5,38 @@
     </div>
 
     <div class="auth-buttons">
-   
+
       <ng-container *ngIf="isLoggedIn">
-     
-        <a *ngIf="role === 'employee'" 
-           routerLink="/felhasznaloprofil" 
+
+        <ng-container *ngIf="role === 'employee'">
+        <a routerLink="/applicant-jobs"
            class="btn-login">
-          {{ user?.username }} profilja
+          {{ user?.username }} - Állások
         </a>
-      
+
+        <a routerLink="/felhasznaloprofil"
+             class="btn-login"
+             style="margin-left: 10px;">
+             {{ user?.username }} fiókja
+        </a>
+        </ng-container>
+
         <ng-container *ngIf="role === 'employer'">
-          <a routerLink="/company-main" 
+          <a routerLink="/company-main"
              class="btn-login">
              Saját hirdetéseim
           </a>
-          <a routerLink="/felhasznaloprofil" 
-             class="btn-login" 
-             style="margin-left: 10px;">
-             {{ user?.username }} fiókja
-          </a>
         </ng-container>
-       
-        <a (click)="logout()" 
-           class="btn-register" 
-           style="cursor: pointer;">
+
+        <a (click)="logout()"
+           class="btn-register"
+           style="cursor: pointer;"
+           routerLink="/bejelentkezes">
           Kijelentkezés
         </a>
 
       </ng-container>
-   
+
       <ng-container *ngIf="!isLoggedIn">
         <a routerLink="/bejelentkezes" class="btn-login">Bejelentkezés</a>
         <a routerLink="/register" class="btn-register">Regisztráció</a>
