@@ -39,7 +39,7 @@ h2 {
   width: 30%;
   padding: 0.75rem 1rem;
   margin-top: 1rem;
-  background: #2563eb;
+  background: #10b981;
   color: white;
   border: none;
   border-radius: 6px;
@@ -49,8 +49,14 @@ h2 {
   transition: background-color 0.3s;
 }
 
-.apply-btn:hover {
-  background: #1d4ed8;
+.apply-btn:hover:not(:disabled) {
+  background: #047857;
+}
+
+.apply-btn:disabled {
+  background: #d1d5db;
+  cursor: not-allowed;
+  opacity: 0.6;
 }
 
 @media (max-width: 768px) {
