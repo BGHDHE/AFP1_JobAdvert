@@ -1,8 +1,10 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-applicant-jobs',
-  imports: [],
+  imports: [CommonModule, RouterModule],
   templateUrl: './applicant-jobs.html',
   styleUrl: './applicant-jobs.css',
 })
