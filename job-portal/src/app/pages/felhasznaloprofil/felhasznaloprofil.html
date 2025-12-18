@@ -1,17 +1,20 @@
 <div class="profile-container">
   <h2>Felhasználói profil</h2>
 
-  <div class="user-info">
-    <p><strong>Név:</strong> {{ user.name }}</p>
-    <p><strong>Email:</strong> {{ user.email }}</p>
-    <p><strong>Lakhely:</strong> {{ user.location }}</p>
-    <p><strong>Telefonszám:</strong> {{ user.phone }}</p>
-    <p><strong>Jelenleg van-e állása?</strong> {{ user.hasJob ? 'Igen' : 'Nem' }}</p>
+  <div *ngIf="loading" class="loading">
+    <p>Adatok betöltése...</p>
   </div>
 
-  <div class="applications">
-    <h3>Jelentkezett állások</h3>
-    <!-- Ide szúrjuk be a HTML-t a TS-ből -->
-    <div [innerHTML]="applicationsHtml"></div>
+  <div *ngIf="errorMessage && !loading" class="error-message">
+    <p>{{ errorMessage }}</p>
+  </div>
+
+  <div *ngIf="user && !loading" class="user-info">
+    <p><strong>Felhasználónév:</strong> {{ user?.username }}</p>
+    <p><strong>Email:</strong> {{ user?.email }}</p>
+    <p><strong>Lakhely:</strong> {{ user?.location || 'Nincs megadva' }}</p>
+    <p><strong>Telefonszám:</strong> {{ user?.phone || 'Nincs megadva' }}</p>
+    <p><strong>Jelenleg van-e állása?</strong> {{ user?.hasJob ? 'Igen' : 'Nem' }}</p>
+    <p><strong>Szerepkör:</strong> {{ user?.role === 'employer' ? 'Munkáltató' : 'Munkavállaló' }}</p>
   </div>
 </div>

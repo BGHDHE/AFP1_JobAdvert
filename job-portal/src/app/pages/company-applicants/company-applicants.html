@@ -1,13 +1,41 @@
-<link rel="stylesheet" href="./company-applicants.css">
-<div class ="applicants-section">
-    <button class= "profile">Profil</button><button class="return" routerLink="./company-main">Vissza</button>
-     <h2 class ="applicants"> Jelentkezők</h2>
-     <div class ="applicant">
-        <h3 class ="applicant_name">Név</h3> <p class ="applicant_details">-Részletek</p>
-        <div class="controls">
-            <button class="accept">Elfogadás</button> <button class="reject">Elutasítás</button>
+<div class="company-applicants-container">
+  <h1>Jelentkezők az Én Hirdetéseihez</h1>
+
+  <div *ngIf="loading" class="loading">
+    <p>Adatok betöltése...</p>
+  </div>
+
+  <div *ngIf="errorMessage && !loading" class="error-message">
+    <p>{{ errorMessage }}</p>
+  </div>
+
+  <div *ngIf="!loading && applicants.length > 0" class="applicants-list">
+    <div *ngFor="let applicant of applicants" class="applicant-card">
+      <div class="applicant-header">
+        <div class="applicant-info">
+          <h2>{{ applicant.username }}</h2>
+          <p class="job-title">{{ applicant.title }} - {{ applicant.company }}</p>
         </div>
+        <span [ngClass]="'status ' + getStatusClass(applicant.status)">
+          {{ getStatusLabel(applicant.status) }}
+        </span>
+      </div>
 
-     </div>
+      <div class="applicant-details">
+        <p><strong>Email:</strong> {{ applicant.email }}</p>
+        <p><strong>Helyszín:</strong> {{ applicant.location || 'Nem adott meg' }}</p>
+        <p><strong>Telefon:</strong> {{ applicant.phone || 'Nem adott meg' }}</p>
+        <p><strong>Jelentkezés dátuma:</strong> {{ applicant.applied_at | date:'yyyy-MM-dd HH:mm' }}</p>
+      </div>
 
+      <div class="applicant-actions" *ngIf="applicant.status === 'pending'">
+        <button class="btn-accept" (click)="acceptApplication(applicant)">Elfogadás</button>
+        <button class="btn-reject" (click)="rejectApplication(applicant)">Elutasítás</button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!loading && applicants.length === 0 && !errorMessage" class="empty-message">
+    <p>Nincsenek jelentkezők az Ön hirdetéseihez.</p>
+  </div>
 </div>
